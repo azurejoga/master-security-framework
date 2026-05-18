@@ -1,6 +1,6 @@
 # Master Security Framework (MSF)
 
-> **Framework de segurança abrangente, multi-linguagem e multi-camada para aplicações modernas.**
+> **Comprehensive, multi-language, multi-layer security framework for modern applications.**
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://typescriptlang.org)
@@ -9,12 +9,12 @@
 
 ---
 
-## Índice
+## Table of Contents
 
-1. [Visão Geral](#visão-geral)
-2. [Arquitetura](#arquitetura)
-3. [Instalação](#instalação)
-4. [Módulos Python](#módulos-python)
+1. [Overview](#overview)
+2. [Architecture](#architecture)
+3. [Installation](#installation)
+4. [Python Modules](#python-modules)
    - [Core](#python-core)
    - [Auth](#python-auth)
    - [Crypto](#python-crypto)
@@ -29,7 +29,7 @@
    - [File](#python-file)
    - [Enterprise](#python-enterprise)
    - [Integrations](#python-integrations)
-5. [Módulos TypeScript](#módulos-typescript)
+5. [TypeScript Modules](#typescript-modules)
    - [Core](#ts-core)
    - [Auth](#ts-auth)
    - [Crypto](#ts-crypto)
@@ -44,35 +44,35 @@
    - [File](#ts-file)
    - [Enterprise](#ts-enterprise)
    - [Integrations](#ts-integrations)
-6. [Guia de Uso](#guia-de-uso)
-7. [Telemetria e Observabilidade](#telemetria-e-observabilidade)
-8. [Contribuição](#contribuição)
+6. [Usage Guide](#usage-guide)
+7. [Telemetry & Observability](#telemetry--observability)
+8. [Contributing](#contributing)
 
 ---
 
-## Visão Geral
+## Overview
 
-O **Master Security Framework (MSF)** é um framework de segurança completo, projetado para proteger aplicações em múltiplas camadas: desde autenticação e criptografia até detecção de ataques web, análise de rede, segurança cloud, proteção de IA e muito mais.
+The **Master Security Framework (MSF)** is a complete security framework designed to protect applications across multiple layers: from authentication and cryptography to web attack detection, network analysis, cloud security, AI protection, and much more.
 
-### Características Principais
+### Key Features
 
-- **243 testes passando** (77 Python + 166 TypeScript)
-- **14 módulos Python** com 180+ funções
-- **14 módulos TypeScript** com 170+ funções
-- **Telemetria OpenTelemetry** integrada
-- **Métricas e logging** estruturado com pino/loguru
-- **Cache in-memory** com invalidação automática
-- **Policy Engine** para regras de segurança configuráveis
-- **Event Bus** para comunicação assíncrona entre módulos
-- **Suporte a criptografia pós-quântica** (Kyber, Dilithium, SPHINCS+, Falcon)
-- **Detecção de ataques** em tempo real (XSS, SQLi, SSRF, RCE, DDoS, etc.)
-- **Honeypots adaptativos** e tokens de mel (honeytokens)
-- **Conformidade enterprise** (LGPD, GDPR, HIPAA, PCI-DSS)
-- **Integrações** com FastAPI, Django, Flask, Express, Next.js, NestJS, Cloudflare, e mais
+- **243 tests passing** (77 Python + 166 TypeScript)
+- **14 Python modules** with 180+ functions
+- **14 TypeScript modules** with 170+ functions
+- **OpenTelemetry** integration built-in
+- **Structured metrics and logging** with pino/loguru
+- **In-memory cache** with automatic invalidation
+- **Policy Engine** for configurable security rules
+- **Event Bus** for async inter-module communication
+- **Post-quantum cryptography** support (Kyber, Dilithium, SPHINCS+, Falcon)
+- **Real-time attack detection** (XSS, SQLi, SSRF, RCE, DDoS, etc.)
+- **Adaptive honeypots** and honeytokens
+- **Enterprise compliance** (LGPD, GDPR, HIPAA, PCI-DSS)
+- **Integrations** with FastAPI, Django, Flask, Express, Next.js, NestJS, Cloudflare, and more
 
 ---
 
-## Arquitetura
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -113,7 +113,7 @@ O **Master Security Framework (MSF)** é um framework de segurança completo, pr
 
 ---
 
-## Instalação
+## Installation
 
 ### Python
 
@@ -132,1142 +132,1142 @@ npm run build
 
 ---
 
-## Módulos Python
+## Python Modules
 
 ### Python: Core
 
-Módulo base com configuração, logging, telemetria, métricas, cache, policy engine e event bus.
+Base module with configuration, logging, telemetry, metrics, cache, policy engine, and event bus.
 
-#### Funções
+#### Functions
 
-- `get_config() -> dict`: Obtém a configuração global do framework com valores default e variáveis de ambiente.
-- `set_config(config: dict) -> None`: Define a configuração global do framework.
-- `reload_config() -> dict`: Recarrega a configuração a partir de variáveis de ambiente.
-- `get_logger(name: str, level: str) -> logging.Logger`: Obtém um logger estruturado com contexto.
-- `get_metrics() -> MetricsRegistry`: Obtém o registrador de métricas global.
-- `get_policy_engine() -> PolicyEngine`: Obtém o motor de políticas de segurança.
-- `get_event_bus() -> EventBus`: Obtém o barramento de eventos assíncrono.
-- `get_cache() -> CacheManager`: Obtém o gerenciador de cache in-memory.
-- `get_telemetry() -> TelemetryManager`: Obtém o gerenciador de telemetria OpenTelemetry.
-- `create_span(name: str, attributes: dict) -> Span`: Cria um span de tracing OpenTelemetry.
-
----
-
-### Python: Auth (30 funções)
-
-Autenticação completa: JWT, TOTP, WebAuthn/Passkeys, detecção de ataques de credential stuffing, brute force, session hijacking, token replay, impossible travel, análise comportamental e verificação de breach de senhas.
-
-#### Funções
-
-- `validate_jwt(token: str, secret: str, algorithms: Optional[list[str]], verify_exp: bool, required_claims: Optional[dict[str, Any]]) -> dict`: Valida e decodifica um token JWT. Verifica assinatura, expiração, claims obrigatórios e retorna o payload decodificado.
-
-- `generate_jwt(subject: str, secret: str, algorithm: str, expiry: int, claims: Optional[dict[str, Any]], issuer: Optional[str]) -> str`: Gera um token JWT assinado com subject, claims personalizadas, expiração e issuer configuráveis.
-
-- `revoke_jwt(token_id: str, reason: str) -> bool`: Revoga um token JWT pelo seu JTI (JWT ID). Adiciona à blacklist de tokens revogados.
-
-- `rotate_jwt(old_token: str, secret: str, algorithm: str, expiry: int) -> str`: Rotaciona um JWT validando o token antigo e emitindo um novo com mesma identidade.
-
-- `validate_refresh_token(token: str, secret: str, user_id: str) -> dict`: Valida um refresh token para um usuário específico, verificando pertencimento e expiração.
-
-- `secure_session(user_id: str, ip: str, user_agent: str, device_id: Optional[str]) -> dict`: Cria uma sessão segura para um usuário autenticado, registrando IP, user agent e device fingerprint.
-
-- `validate_session(session_id: str, user_id: str, ip: str) -> bool`: Valida uma sessão existente verificando se o session_id pertence ao usuário e se o IP corresponde.
-
-- `detect_session_hijack(session_id: str, current_ip: str, current_ua: str, historical_data: dict) -> bool`: Detecta possível sequestro de sessão comparando IP e user agent atuais com dados históricos.
-
-- `detect_token_replay(token_id: str, timestamp: float, ip: str) -> bool`: Detecta se um token está sendo reutilizado (replay) verificando se já foi usado antes.
-
-- `detect_credential_stuffing(ip: str, username: str, attempts: int, window: int) -> bool`: Detecta ataques de credential stuffing de um único IP baseado em tentativas em uma janela de tempo.
-
-- `detect_bruteforce(ip: str, attempts: int, window: int, threshold: int) -> bool`: Detecta tentativas de brute force login de um único IP quando excede o threshold na janela.
-
-- `adaptive_auth(user_id: str, risk_score: float, context: dict) -> dict`: Realiza autenticação adaptativa baseada em score de risco e contexto (localização, dispositivo, horário).
-
-- `behavioral_auth(user_id: str, behavior_data: dict, baseline: dict) -> float`: Avalia autenticação baseada em biometria comportamental comparando com baseline do usuário.
-
-- `impossible_travel(user_id: str, current_location: dict, last_location: dict, time_delta: float) -> bool`: Detecta viagem impossível entre duas localizações de login baseado em distância e tempo.
-
-- `geo_velocity_check(user_id: str, locations: list[dict], max_speed_kmh: float) -> bool`: Verifica velocidade geográfica através de múltiplas localizações de login contra velocidade máxima permitida.
-
-- `risk_based_auth(user_id: str, context: dict, risk_factors: dict) -> dict`: Realiza autenticação baseada em risco calculando score a partir de múltiplos fatores de risco.
-
-- `passkey_auth(challenge: str, authenticator_data: bytes, client_data_json: str, signature: bytes) -> bool`: Valida uma autenticação passkey (FIDO2/WebAuthn) verificando assinatura e dados do autenticador.
-
-- `webauthn_verify(credential_id: str, challenge: str, origin: str, rp_id: str, public_key: bytes, signature: bytes, auth_data: bytes, client_data: str) -> bool`: Verifica uma asserção WebAuthn completa com validação de origin, RP ID e assinatura criptográfica.
-
-- `generate_totp(secret: str, digits: int, period: int, time_step: Optional[int]) -> str`: Gera um código TOTP (Time-based One-Time Password) com dígitos e período configuráveis.
-
-- `validate_totp(secret: str, token: str, digits: int, period: int, drift: int) -> bool`: Valida um token TOTP com tolerância de drift de relógio para compensar dessincronização.
-
-- `verify_backup_code(code: str, valid_codes: list[str]) -> bool`: Verifica um código de backup/recovery e o consome (remove da lista de válidos).
-
-- `password_entropy(password: str) -> float`: Calcula a entropia Shannon de uma senha para medir sua complexidade informacional.
-
-- `detect_weak_password(password: str, min_entropy: float, common_passwords: Optional[list[str]]) -> bool`: Detecta se uma senha é fraca baseada em entropia baixa e presença em listas de senhas comuns.
-
-- `password_breach_check(password_hash: str, breach_db: dict[str, int]) -> bool`: Verifica se um hash de senha aparece em um banco de dados de breaches conhecidas.
-
-- `secure_password_hash(password: str, algorithm: str, salt: Optional[str], iterations: int) -> str`: Cria um hash seguro de senha com salt e key stretching (iterações) para resistência a brute force.
-
-- `verify_password_hash(password: str, hash_value: str) -> bool`: Verifica uma senha contra um hash armazenado usando comparação segura.
-
-- `device_fingerprint(user_agent: str, screen: str, timezone: str, languages: list[str], platform: str) -> str`: Gera um fingerprint de dispositivo a partir de atributos do browser/sistema.
-
-- `browser_fingerprint(canvas_hash: str, webgl_hash: str, audio_hash: str, fonts: list[str]) -> str`: Gera um fingerprint de browser baseado em características de rendering (canvas, WebGL, áudio, fontes).
-
-- `biometric_validation(biometric_data: dict, stored_template: dict, threshold: float) -> bool`: Valida dados biométricos contra um template armazenado com threshold de similaridade.
-
-- `phishing_resistant_auth(auth_method: str, fido_level: str, attestation: Optional[dict]) -> bool`: Verifica se um método de autenticação é resistente a phishing (FIDO2 level 2+).
+- `get_config() -> dict`: Gets the global framework configuration with default values and environment variables.
+- `set_config(config: dict) -> None`: Sets the global framework configuration.
+- `reload_config() -> dict`: Reloads configuration from environment variables.
+- `get_logger(name: str, level: str) -> logging.Logger`: Gets a structured logger with context.
+- `get_metrics() -> MetricsRegistry`: Gets the global metrics registry.
+- `get_policy_engine() -> PolicyEngine`: Gets the security policy engine.
+- `get_event_bus() -> EventBus`: Gets the async event bus.
+- `get_cache() -> CacheManager`: Gets the in-memory cache manager.
+- `get_telemetry() -> TelemetryManager`: Gets the OpenTelemetry manager.
+- `create_span(name: str, attributes: dict) -> Span`: Creates an OpenTelemetry tracing span.
 
 ---
 
-### Python: Crypto (20 funções)
+### Python: Auth (30 functions)
 
-Criptografia autenticada (AES-GCM, ChaCha20-Poly1305), criptografia híbrida, criptografia pós-quântica (Kyber, Dilithium, SPHINCS+, Falcon), HMAC, geração segura de chaves e proteção contra timing attacks.
+Complete authentication: JWT, TOTP, WebAuthn/Passkeys, credential stuffing detection, brute force, session hijacking, token replay, impossible travel, behavioral analysis, and password breach checking.
 
-#### Funções
+#### Functions
 
-- `encrypt_data(plaintext: bytes, key: bytes, algorithm: str, aad: Optional[bytes]) -> dict[str, Any]`: Criptografa dados usando authenticated encryption (AES-GCM ou ChaCha20-Poly1305) com suporte a associated data.
+- `validate_jwt(token: str, secret: str, algorithms: Optional[list[str]], verify_exp: bool, required_claims: Optional[dict[str, Any]]) -> dict`: Validates and decodes a JWT token. Verifies signature, expiration, required claims, and returns the decoded payload.
 
-- `decrypt_data(ciphertext: bytes, key: bytes, nonce: bytes, algorithm: str, aad: Optional[bytes]) -> bytes`: Descriptografa dados usando authenticated decryption, verificando integridade e autenticidade.
+- `generate_jwt(subject: str, secret: str, algorithm: str, expiry: int, claims: Optional[dict[str, Any]], issuer: Optional[str]) -> str`: Generates a signed JWT token with subject, custom claims, expiry, and issuer.
 
-- `encrypt_file(filepath: str, key: bytes, output_path: Optional[str], algorithm: str) -> str`: Criptografa um arquivo em disco usando authenticated encryption, retornando o path do output.
+- `revoke_jwt(token_id: str, reason: str) -> bool`: Revokes a JWT by its JTI (JWT ID). Adds to the revocation blacklist.
 
-- `decrypt_file(filepath: str, key: bytes, output_path: Optional[str], algorithm: str) -> str`: Descriptografa um arquivo em disco verificando integridade antes de retornar o conteúdo.
+- `rotate_jwt(old_token: str, secret: str, algorithm: str, expiry: int) -> str`: Rotates a JWT by validating the old token and issuing a new one with the same identity.
 
-- `generate_keypair(algorithm: str, curve: Optional[str]) -> dict[str, Any]`: Gera um par de chaves assimétricas para assinatura ou troca de chaves (Ed25519, X25519, etc.).
+- `validate_refresh_token(token: str, secret: str, user_id: str) -> dict`: Validates a refresh token for a specific user, checking ownership and expiration.
 
-- `rotate_keys(old_key: bytes, new_key: bytes, algorithm: str) -> dict[str, Any]`: Rotaciona chaves de criptografia re-criptografando um payload de teste com a nova chave.
+- `secure_session(user_id: str, ip: str, user_agent: str, device_id: Optional[str]) -> dict`: Creates a secure session for an authenticated user, recording IP, user agent, and device fingerprint.
 
-- `secure_random(nbytes: int) -> bytes`: Gera bytes criptograficamente seguros usando `os.urandom()`.
+- `validate_session(session_id: str, user_id: str, ip: str) -> bool`: Validates an existing session by checking session_id ownership and IP match.
 
-- `hybrid_encrypt(plaintext: bytes, public_key: bytes, algorithm: str) -> dict[str, Any]`: Criptografa usando esquema híbrido: key exchange assimétrico + criptografia simétrica do payload.
+- `detect_session_hijack(session_id: str, current_ip: str, current_ua: str, historical_data: dict) -> bool`: Detects potential session hijacking by comparing current IP and user agent against historical data.
 
-- `hybrid_decrypt(encrypted_data: dict[str, Any], private_key: bytes, algorithm: str) -> bytes`: Descriptografa dados criptografados com esquema híbrido, recuperando o plaintext original.
+- `detect_token_replay(token_id: str, timestamp: float, ip: str) -> bool`: Detects if a token is being replayed by checking if it has been used before.
 
-- `pqc_encrypt(plaintext: bytes, public_key: bytes, algorithm: str) -> dict[str, Any]`: Criptografa usando algoritmo pós-quântico (ML-KEM/Kyber) resistente a computadores quânticos.
+- `detect_credential_stuffing(ip: str, username: str, attempts: int, window: int) -> bool`: Detects credential stuffing attacks from a single IP based on attempts within a time window.
 
-- `pqc_decrypt(encrypted_data: dict[str, Any], private_key: bytes, algorithm: str) -> bytes`: Descriptografa dados criptografados com algoritmo pós-quântico.
+- `detect_bruteforce(ip: str, attempts: int, window: int, threshold: int) -> bool`: Detects brute force login attempts from a single IP when exceeding the threshold in the window.
 
-- `kyber_key_exchange(public_key: bytes, private_key: bytes) -> dict[str, Any]`: Realiza troca de chaves baseada em Kyber (ML-KEM) para estabelecimento de chave compartilhada pós-quântica.
+- `adaptive_auth(user_id: str, risk_score: float, context: dict) -> dict`: Performs adaptive authentication based on risk score and context (location, device, time).
 
-- `dilithium_sign(message: bytes, private_key: bytes) -> dict[str, Any]`: Assina uma mensagem usando Dilithium (ML-DSA), esquema de assinatura pós-quântico do NIST.
+- `behavioral_auth(user_id: str, behavior_data: dict, baseline: dict) -> float`: Assesses authentication based on behavioral biometrics compared to user baseline.
 
-- `sphincs_sign(message: bytes, private_key: bytes) -> dict[str, Any]`: Assina uma mensagem usando SPHINCS+, esquema de assinatura hash-based pós-quântico.
+- `impossible_travel(user_id: str, current_location: dict, last_location: dict, time_delta: float) -> bool`: Detects impossible travel between two login locations based on distance and time.
 
-- `falcon_sign(message: bytes, private_key: bytes) -> dict[str, Any]`: Assina uma mensagem usando Falcon, esquema de assinatura lattice-based pós-quântico.
+- `geo_velocity_check(user_id: str, locations: list[dict], max_speed_kmh: float) -> bool`: Checks geographic velocity across multiple login locations against maximum allowed speed.
 
-- `verify_signature(message: bytes, signature: bytes, public_key: bytes, algorithm: str) -> bool`: Verifica uma assinatura digital contra uma mensagem e chave pública.
+- `risk_based_auth(user_id: str, context: dict, risk_factors: dict) -> dict`: Performs risk-based authentication calculating score from multiple risk factors.
 
-- `generate_hmac(data: bytes, key: bytes, algorithm: str) -> str`: Gera um HMAC (Hash-based Message Authentication Code) para autenticação de integridade.
+- `passkey_auth(challenge: str, authenticator_data: bytes, client_data_json: str, signature: bytes) -> bool`: Validates a passkey (FIDO2/WebAuthn) authentication response by verifying signature and authenticator data.
 
-- `verify_hmac(data: bytes, signature: str, key: bytes, algorithm: str) -> bool`: Verifica um HMAC comparando a assinatura esperada com a calculada.
+- `webauthn_verify(credential_id: str, challenge: str, origin: str, rp_id: str, public_key: bytes, signature: bytes, auth_data: bytes, client_data: str) -> bool`: Verifies a complete WebAuthn assertion with origin, RP ID, and cryptographic signature validation.
 
-- `secure_memory_erase(data: bytearray) -> None`: Apaga seguramente dados sensíveis da memória sobrescrevendo com zeros.
+- `generate_totp(secret: str, digits: int, period: int, time_step: Optional[int]) -> str`: Generates a TOTP (Time-based One-Time Password) code with configurable digits and period.
 
-- `anti_timing_compare(a: bytes, b: bytes) -> bool`: Compara duas sequências de bytes em tempo constante para prevenir timing attacks.
+- `validate_totp(secret: str, token: str, digits: int, period: int, drift: int) -> bool`: Validates a TOTP token with clock drift tolerance to compensate for desynchronization.
 
----
+- `verify_backup_code(code: str, valid_codes: list[str]) -> bool`: Verifies a backup/recovery code and consumes it (removes from valid list).
 
-### Python: Web (30 funções)
+- `password_entropy(password: str) -> float`: Calculates the Shannon entropy of a password to measure informational complexity.
 
-Detecção e prevenção de ataques web: XSS, SQL Injection, NoSQL Injection, SSRF, RCE, LFI, RFI, SSTI, Command Injection, Deserialization, Path Traversal, Open Redirect, Clickjacking, CSRF, CORS, e sanitização de HTML/SVG/Markdown/CSS/JS.
+- `detect_weak_password(password: str, min_entropy: float, common_passwords: Optional[list[str]]) -> bool`: Detects if a password is weak based on low entropy and presence in common password lists.
 
-#### Funções
+- `password_breach_check(password_hash: str, breach_db: dict[str, int]) -> bool`: Checks if a password hash appears in a known breach database.
 
-- `detect_xss(input_str: str, patterns: Optional[list[str]], severity_threshold: str) -> dict[str, Any]`: Detecta padrões de ataque Cross-Site Scripting (XSS) incluindo script tags, event handlers, javascript: URIs e DOM XSS.
+- `secure_password_hash(password: str, algorithm: str, salt: Optional[str], iterations: int) -> str`: Creates a secure password hash with salt and key stretching (iterations) for brute force resistance.
 
-- `sanitize_html(html_str: str, allowed_tags: Optional[list[str]], allowed_attrs: Optional[list[str]]) -> str`: Sanitiza HTML removendo tags e atributos não permitidos, prevenindo XSS via HTML injection.
+- `verify_password_hash(password: str, hash_value: str) -> bool`: Verifies a password against a stored hash using secure comparison.
 
-- `sanitize_svg(svg: str, allowed_elements: Optional[list[str]]) -> str`: Sanitiza SVG removendo elementos e atributos perigosos como `<script>`, `onload`, e event handlers.
+- `device_fingerprint(user_agent: str, screen: str, timezone: str, languages: list[str], platform: str) -> str`: Generates a device fingerprint from browser/system attributes.
 
-- `sanitize_markdown(markdown: str, allowed_html: Optional[list[str]]) -> str`: Sanitiza markdown removendo HTML perigoso embutido enquanto preserva a formatação markdown.
+- `browser_fingerprint(canvas_hash: str, webgl_hash: str, audio_hash: str, fonts: list[str]) -> str`: Generates a browser fingerprint from rendering characteristics (canvas, WebGL, audio, fonts).
 
-- `sanitize_css(css: str, allowed_properties: Optional[list[str]]) -> str`: Sanitiza CSS removendo propriedades perigosas como `expression()`, `url(javascript:)`, e `behavior`.
+- `biometric_validation(biometric_data: dict, stored_template: dict, threshold: float) -> bool`: Validates biometric data against a stored template with similarity threshold.
 
-- `sanitize_js(js_code: str, dangerous_patterns: Optional[list[str]]) -> str`: Sanitiza JavaScript removendo padrões perigosos como `eval()`, `Function()`, `document.write()`, etc.
-
-- `detect_sqli(input_str: str, patterns: Optional[list[str]], context: Optional[str]) -> dict[str, Any]`: Detecta padrões de SQL Injection incluindo UNION-based, blind, time-based, e error-based injection.
-
-- `detect_nosqli(input_str: str, patterns: Optional[list[str]]) -> dict[str, Any]`: Detecta padrões de NoSQL Injection em queries MongoDB/NoSQL usando operadores como `$gt`, `$ne`, `$regex`.
-
-- `detect_ssrf(url: str, allowed_domains: Optional[list[str]], blocked_ips: Optional[list[str]]) -> dict[str, Any]`: Detecta Server-Side Request Forgery verificando URLs contra domínios permitidos e IPs bloqueados (incluindo localhost, metadata endpoints).
-
-- `detect_rce(input_str: str, patterns: Optional[list[str]]) -> dict[str, Any]`: Detecta padrões de Remote Code Execution incluindo chamadas a `eval()`, `exec()`, `system()`, backticks, e pipe operators.
-
-- `detect_lfi(input_str: str, patterns: Optional[list[str]]) -> dict[str, Any]`: Detecta Local File Inclusion usando path traversal como `../../etc/passwd`, `php://filter`, e `data://` URIs.
-
-- `detect_rfi(input_str: str, patterns: Optional[list[str]]) -> dict[str, Any]`: Detecta Remote File Inclusion via URLs externas em parâmetros de include/require.
-
-- `detect_template_injection(input_str: str, engine_type: str) -> dict[str, Any]`: Detecta Server-Side Template Injection (SSTI) para engines Jinja2, EJS, Handlebars, Pug, Twig, etc.
-
-- `detect_command_injection(input_str: str, patterns: Optional[list[str]]) -> dict[str, Any]`: Detecta OS Command Injection usando operadores como `;`, `|`, `&&`, `||`, backticks, e `$()`.
-
-- `detect_deserialization_attack(data: Any, allowed_classes: Optional[list[str]]) -> dict[str, Any]`: Detecta insecure deserialization verificando classes permitidas e padrões de gadgets conhecidos.
-
-- `detect_path_traversal(input_str: str, base_path: Optional[str]) -> dict[str, Any]`: Detecta path traversal usando `../`, `..\\`, encoded traversal, e verifica se o path resolve dentro do base_path.
-
-- `detect_open_redirect(url: str, allowed_hosts: Optional[list[str]]) -> dict[str, Any]`: Detecta open redirect verificando se a URL de redirecionamento aponta para um host permitido.
-
-- `validate_cors(origin: str, allowed_origins: Optional[list[str]], allowed_methods: Optional[list[str]], allowed_headers: Optional[list[str]]) -> dict[str, Any]`: Valida requisição CORS verificando Origin, Methods e Headers contra listas de permitidos.
-
-- `secure_headers(request: Optional[dict[str, Any]], config: Optional[dict[str, Any]]) -> dict[str, str]`: Gera headers HTTP seguros incluindo HSTS, X-Frame-Options, X-Content-Type-Options, CSP, Referrer-Policy, etc.
-
-- `generate_csp(config: Optional[dict[str, Any]]) -> str`: Gera um header Content-Security-Policy a partir de uma configuração de diretivas.
-
-- `validate_csp(csp_header: str, policy: Optional[dict[str, Any]]) -> bool`: Valida um header CSP contra uma política de segurança definida.
-
-- `csrf_protect(request: Optional[dict[str, Any]], token: Optional[str], session_token: Optional[str]) -> bool`: Protege contra CSRF verificando o token da requisição contra o token da sessão.
-
-- `validate_csrf(token: Optional[str], session_token: Optional[str]) -> bool`: Valida um token CSRF contra o token da sessão usando comparação segura.
-
-- `secure_cookie(name: str, value: str, domain: Optional[str], path: str, secure: bool, httponly: bool, samesite: str, max_age: Optional[int]) -> str`: Gera um header Set-Cookie seguro com flags Secure, HttpOnly, SameSite e domínio escopo.
-
-- `detect_clickjacking(headers: Optional[dict[str, str]], frame_options: Optional[str]) -> bool`: Detecta vulnerabilidade de clickjacking verificando ausência de X-Frame-Options ou CSP frame-ancestors.
-
-- `validate_origin(origin: str, allowed_origins: Optional[list[str]]) -> bool`: Valida o header Origin contra uma lista de origens permitidas.
-
-- `validate_referer(referer: str, expected_domain: str) -> bool`: Valida o header Referer contra um domínio esperado para prevenir CSRF e hotlinking.
-
-- `secure_redirect(url: str, allowed_hosts: Optional[list[str]]) -> str`: Valida e retorna uma URL de redirecionamento segura, prevenindo open redirect.
-
-- `webhook_signature(payload: str, secret: str, algorithm: str, timestamp: Optional[str]) -> str`: Gera uma assinatura HMAC para verificação de payload de webhook.
-
-- `webhook_replay_protection(signature: str, timestamp: str, payload: str, secret: str, window: int) -> bool`: Protege contra replay de webhooks verificando assinatura e timestamp dentro de uma janela.
+- `phishing_resistant_auth(auth_method: str, fido_level: str, attestation: Optional[dict]) -> bool`: Verifies if an authentication method is phishing-resistant (FIDO2 level 2+).
 
 ---
 
-### Python: API (18 funções)
+### Python: Crypto (20 functions)
 
-Segurança de APIs: validação JSON Schema, sanitização, rate limiting adaptativo, detecção de BOLA/IDOR, broken authentication, mass assignment, shadow APIs, GraphQL security (depth limit, cost analysis, abuse detection), gRPC security, WebSocket security, e API key management.
+Authenticated encryption (AES-GCM, ChaCha20-Poly1305), hybrid encryption, post-quantum cryptography (Kyber, Dilithium, SPHINCS+, Falcon), HMAC, secure key generation, and timing attack protection.
 
-#### Funções
+#### Functions
 
-- `validate_json_schema(data: Any, schema: dict[str, Any], strict_mode: bool) -> dict[str, Any]`: Valida dados contra uma definição JSON Schema com modo estrito opcional para campos extras.
+- `encrypt_data(plaintext: bytes, key: bytes, algorithm: str, aad: Optional[bytes]) -> dict[str, Any]`: Encrypts data using authenticated encryption (AES-GCM or ChaCha20-Poly1305) with associated data support.
 
-- `validate_input(data: Any, rules: dict[str, Any], max_depth: int, max_size: int) -> dict[str, Any]`: Valida dados de entrada de API contra regras de tipo, tamanho, padrão, enum, e profundidade máxima.
+- `decrypt_data(ciphertext: bytes, key: bytes, nonce: bytes, algorithm: str, aad: Optional[bytes]) -> bytes`: Decrypts data using authenticated decryption, verifying integrity and authenticity.
 
-- `sanitize_json(data: Any, allowed_types: Optional[set[str]], max_string_length: int) -> dict[str, Any]`: Sanitiza dados JSON removendo tipos não permitidos e truncando strings longas.
+- `encrypt_file(filepath: str, key: bytes, output_path: Optional[str], algorithm: str) -> str`: Encrypts a file on disk using authenticated encryption, returning the output path.
 
-- `api_rate_limit(client_id: str, endpoint: str, config: Optional[dict[str, Any]]) -> dict[str, Any]`: Aplica rate limiting usando sliding window algorithm com limites configuráveis por cliente e endpoint.
+- `decrypt_file(filepath: str, key: bytes, output_path: Optional[str], algorithm: str) -> str`: Decrypts a file on disk verifying integrity before returning content.
 
-- `adaptive_rate_limit(client_id: str, endpoint: str, behavior: dict[str, Any], config: Optional[dict[str, Any]]) -> dict[str, Any]`: Aplica rate limiting adaptativo baseado em padrões de comportamento do cliente (ajusta limites dinamicamente).
+- `generate_keypair(algorithm: str, curve: Optional[str]) -> dict[str, Any]`: Generates an asymmetric key pair for signing or key exchange (Ed25519, X25519, etc.).
 
-- `detect_api_abuse(requests: list[dict[str, Any]], patterns: Optional[list[str]], window: int) -> dict[str, Any]`: Detecta padrões de abuso de API como scraping, enumeration, fuzzing, e automação maliciosa.
+- `rotate_keys(old_key: bytes, new_key: bytes, algorithm: str) -> dict[str, Any]`: Rotates encryption keys by re-encrypting a test payload with the new key.
 
-- `detect_bola(resource_id: str, user_id: str, ownership_map: dict[str, Any]) -> bool`: Detecta Broken Object Level Authorization (BOLA/IDOR) verificando se o usuário tem acesso ao recurso solicitado.
+- `secure_random(nbytes: int) -> bytes`: Generates cryptographically secure random bytes using `os.urandom()`.
 
-- `detect_broken_auth(auth_header: Optional[str], required_scopes: Optional[list[str]], token: Optional[dict[str, Any]]) -> dict[str, Any]`: Detecta problemas de autenticação e autorização como tokens ausentes, expirados, ou com scopes insuficientes.
+- `hybrid_encrypt(plaintext: bytes, public_key: bytes, algorithm: str) -> dict[str, Any]`: Encrypts using hybrid scheme: asymmetric key exchange + symmetric payload encryption.
 
-- `detect_mass_assignment(input_data: dict[str, Any], model_fields: set[str], readonly_fields: Optional[set[str]]) -> dict[str, Any]`: Detecta mass assignment verificando se campos protegidos ou desconhecidos estão sendo enviados.
+- `hybrid_decrypt(encrypted_data: dict[str, Any], private_key: bytes, algorithm: str) -> bytes`: Decrypts data encrypted with hybrid scheme, recovering the original plaintext.
 
-- `detect_shadow_api(endpoint: str, documented_apis: set[str], traffic_patterns: dict[str, Any]) -> dict[str, Any]`: Detecta shadow APIs - endpoints não documentados que estão recebendo tráfego.
+- `pqc_encrypt(plaintext: bytes, public_key: bytes, algorithm: str) -> dict[str, Any]`: Encrypts using post-quantum algorithm (ML-KEM/Kyber) resistant to quantum computers.
 
-- `api_threat_score(request: dict[str, Any], context: Optional[dict[str, Any]], threat_intel: Optional[dict[str, Any]]) -> float`: Calcula score de ameaça composto para uma requisição API baseado em contexto e threat intelligence.
+- `pqc_decrypt(encrypted_data: dict[str, Any], private_key: bytes, algorithm: str) -> bytes`: Decrypts data encrypted with post-quantum algorithm.
 
-- `graphql_depth_limit(query: str, max_depth: int, introspection_enabled: bool) -> dict[str, Any]`: Valida profundidade de query GraphQL contra limite configurado, prevenindo queries recursivas maliciosas.
+- `kyber_key_exchange(public_key: bytes, private_key: bytes) -> dict[str, Any]`: Performs Kyber-based (ML-KEM) post-quantum key exchange for shared key establishment.
 
-- `graphql_cost_analysis(query: str, complexity_map: Optional[dict[str, int]], max_cost: int) -> dict[str, Any]`: Analisa custo computacional de query GraphQL baseado em complexidade de campos e nested queries.
+- `dilithium_sign(message: bytes, private_key: bytes) -> dict[str, Any]`: Signs a message using Dilithium (ML-DSA), NIST post-quantum signature scheme.
 
-- `graphql_abuse_detection(queries: list[dict[str, Any]], window: int, thresholds: Optional[dict[str, Any]]) -> dict[str, Any]`: Detecta padrões de abuso GraphQL como query flooding, introspection abuse, e queries de alto custo repetidas.
+- `sphincs_sign(message: bytes, private_key: bytes) -> dict[str, Any]`: Signs a message using SPHINCS+, hash-based post-quantum signature scheme.
 
-- `grpc_security_validation(metadata: dict[str, str], required_headers: Optional[list[str]], tls_info: Optional[dict[str, Any]]) -> dict[str, Any]`: Valida segurança de requisições gRPC verificando metadata, headers obrigatórios e informações TLS.
+- `falcon_sign(message: bytes, private_key: bytes) -> dict[str, Any]`: Signs a message using Falcon, lattice-based post-quantum signature scheme.
 
-- `secure_websocket(origin: Optional[str], allowed_origins: Optional[list[str]], subprotocols: Optional[list[str]]) -> dict[str, Any]`: Configura e valida conexão WebSocket segura com origin validation e subprotocolos permitidos.
+- `verify_signature(message: bytes, signature: bytes, public_key: bytes, algorithm: str) -> bool`: Verifies a digital signature against a message and public key.
 
-- `api_key_rotation(current_key: str, algorithm: str, expiry_days: int) -> dict[str, Any]`: Gera nova API key com parâmetros seguros de rotação (hash, expiração, prefixo).
+- `generate_hmac(data: bytes, key: bytes, algorithm: str) -> str`: Generates an HMAC (Hash-based Message Authentication Code) for integrity authentication.
 
-- `api_key_validation(api_key: str, valid_keys: dict[str, Any], scopes: Optional[list[str]], required_scope: Optional[str]) -> dict[str, Any]`: Valida uma API key contra registry de keys conhecidas verificando scopes e expiração.
+- `verify_hmac(data: bytes, signature: str, key: bytes, algorithm: str) -> bool`: Verifies an HMAC by comparing expected signature with calculated one.
 
----
+- `secure_memory_erase(data: bytearray) -> None`: Securely erases sensitive data from memory by overwriting with zeros.
 
-### Python: AI (20 funções)
-
-Proteção de aplicações IA: detecção de prompt injection, jailbreak, vazamento de dados sensíveis, system prompt leak, data exfiltration, impersonation, model abuse, agent abuse, LLM firewall, policy engine, RAG source validation, hallucination risk, output guardrails, tool call validation, multi-agent isolation, memory sanitization, token monitoring, e behavior monitoring.
-
-#### Funções
-
-- `detect_prompt_injection(prompt: str, patterns: Optional[list[str]], threshold: float) -> dict[str, Any]`: Detecta tentativas de prompt injection como "ignore previous instructions", "forget all rules", "system:", "you are now", etc.
-
-- `detect_jailbreak(prompt: str, patterns: Optional[list[str]], threshold: float) -> dict[str, Any]`: Detecta jailbreaks como DAN mode, "do anything now", "disable safety", "unrestricted mode", roleplay sem filtros.
-
-- `sanitize_prompt(prompt: str, max_length: int, blocked_patterns: Optional[list[str]]) -> str`: Sanitiza prompt do usuário removendo padrões bloqueados e aplicando limite de tamanho.
-
-- `sanitize_llm_output(output: str, max_length: int, blocked_patterns: Optional[list[str]]) -> str`: Sanitiza output do LLM removendo scripts, event handlers, e dados sensíveis.
-
-- `detect_sensitive_leak(text: str, patterns: Optional[list[str]]) -> dict[str, Any]`: Detecta vazamento de dados sensíveis como SSN, CPF, cartões de crédito, emails, chaves API, senhas.
-
-- `detect_prompt_leak(prompt: str, system_prompt: str, threshold: float) -> dict[str, Any]`: Detecta tentativas de extrair ou vazar o system prompt usando similaridade de conteúdo.
-
-- `detect_data_exfiltration(output: str, sensitive_patterns: Optional[list[str]]) -> dict[str, Any]`: Detecta potencial exfiltração de dados no output do LLM usando pattern matching de dados sensíveis.
-
-- `detect_ai_impersonation(content: str, claimed_identity: str, markers: Optional[list[str]]) -> dict[str, Any]`: Detecta tentativas de impersonação de IA verificando markers de identidade e inconsistências.
-
-- `detect_model_abuse(request_patterns: list[str], rate: float, complexity: float) -> dict[str, Any]`: Detecta abuso de modelo via repetição excessiva, alta taxa de requisições, e complexidade anormal.
-
-- `detect_agent_abuse(agent_behavior: dict[str, Any], policy: dict[str, Any], thresholds: Optional[dict[str, float]]) -> dict[str, Any]`: Detecta comportamento de agente que viola políticas de uso e thresholds configurados.
-
-- `llm_firewall(input_data: dict[str, Any], rules: list[dict[str, Any]], action_on_violation: str) -> dict[str, Any]`: Avalia input contra regras de firewall LLM com ações configuráveis (block, warn, log).
-
-- `ai_policy_engine(prompt: str, output: str, policies: list[dict[str, Any]]) -> dict[str, Any]`: Avalia prompt e output contra um conjunto de políticas de segurança IA.
-
-- `rag_source_validation(sources: list[dict[str, Any]], trusted_domains: Optional[list[str]], validation_rules: Optional[dict[str, Any]]) -> dict[str, Any]`: Valida credibilidade de fontes RAG (Retrieval-Augmented Generation) contra domínios confiáveis.
-
-- `hallucination_risk(output: str, confidence_scores: Optional[list[float]], factual_checks: Optional[list[dict[str, Any]]]) -> dict[str, Any]`: Avalia risco de alucinação no output do LLM baseado em scores de confiança e verificações factuais.
-
-- `ai_output_guard(output: str, guardrails: Optional[list[dict[str, Any]]], redaction_rules: Optional[list[dict[str, Any]]]) -> str`: Aplica guardrails e regras de redação ao output do LLM.
-
-- `tool_call_validation(tool_name: str, arguments: dict[str, Any], allowed_tools: list[str], argument_schemas: Optional[dict[str, dict[str, Any]]]) -> dict[str, Any]`: Valida chamada de ferramenta contra ferramentas permitidas e schemas de argumentos.
-
-- `multi_agent_isolation(agents: list[dict[str, Any]], communication_rules: Optional[dict[str, Any]]) -> dict[str, Any]`: Valida isolamento e políticas de comunicação entre múltiplos agentes IA.
-
-- `ai_memory_sanitizer(memory_entries: list[dict[str, Any]], retention_policy: Optional[dict[str, Any]]) -> list[dict[str, Any]`: Sanitiza entradas de memória IA baseado em política de retenção e expiração.
-
-- `ai_token_monitor(usage: dict[str, int], limits: Optional[dict[str, int]], window: int) -> dict[str, Any]`: Monitora uso de tokens IA contra limites definidos (por request, minuto, dia, custo).
-
-- `ai_behavior_monitor(behavior_log: list[dict[str, Any]], baseline: Optional[dict[str, Any]], deviation_threshold: float) -> dict[str, Any]`: Monitora comportamento IA para desvios de baseline estabelecida.
+- `anti_timing_compare(a: bytes, b: bytes) -> bool`: Compares two byte strings in constant time to prevent timing attacks.
 
 ---
 
-### Python: Network (21 funções)
+### Python: Web (30 functions)
 
-Segurança de rede: detecção de port scan, DNS tunneling, anomalias de tráfego, proxy/VPN/Tor detection, DDoS, validação de IP/domínio, IP spoofing, ARP poisoning, TLS fingerprinting (JA3), beaconing detection (C2), lateral movement, C2 communication detection, network entropy analysis, traffic behavior analysis, e protocol anomaly detection.
+Web attack detection and prevention: XSS, SQL Injection, NoSQL Injection, SSRF, RCE, LFI, RFI, SSTI, Command Injection, Deserialization, Path Traversal, Open Redirect, Clickjacking, CSRF, CORS, and HTML/SVG/Markdown/CSS/JS sanitization.
 
-#### Funções
+#### Functions
 
-- `detect_port_scan(source_ip: str, connections: list[dict[str, Any]], window: float, threshold: int) -> dict[str, Any]`: Detecta port scanning activity analisando portas únicas, taxa de conexão, padrões SYN/RST.
+- `detect_xss(input_str: str, patterns: Optional[list[str]], severity_threshold: str) -> dict[str, Any]`: Detects Cross-Site Scripting (XSS) attack patterns including script tags, event handlers, javascript: URIs, and DOM XSS.
 
-- `detect_dns_tunneling(dns_queries: list[dict[str, Any]], domain: str, threshold: float) -> dict[str, Any]`: Detecta DNS tunneling analisando entropia de queries, tamanho de subdomínios, e frequência.
+- `sanitize_html(html_str: str, allowed_tags: Optional[list[str]], allowed_attrs: Optional[list[str]]) -> str`: Sanitizes HTML by removing disallowed tags and attributes, preventing XSS via HTML injection.
 
-- `detect_traffic_anomaly(traffic_data: list[dict[str, Any]], baseline: dict[str, float], deviation_threshold: float) -> dict[str, Any]`: Detecta anomalias de tráfego comparando métricas atuais contra baseline usando z-score.
+- `sanitize_svg(svg: str, allowed_elements: Optional[list[str]]) -> str`: Sanitizes SVG content by removing dangerous elements and attributes like `<script>`, `onload`, and event handlers.
 
-- `detect_proxy(ip: str, headers: dict[str, str], detection_methods: Optional[list[str]]) -> dict[str, Any]`: Detecta se uma conexão vem através de proxy verificando headers como X-Forwarded-For, Via, etc.
+- `sanitize_markdown(markdown: str, allowed_html: Optional[list[str]]) -> str`: Sanitizes markdown by removing dangerous embedded HTML while preserving markdown formatting.
 
-- `detect_vpn(ip: str, headers: dict[str, str], vpn_db: Optional[dict[str, Any]]) -> dict[str, Any]`: Detecta se um IP origina de serviço VPN usando database de IPs conhecidos.
+- `sanitize_css(css: str, allowed_properties: Optional[list[str]]) -> str`: Sanitizes CSS by removing dangerous properties like `expression()`, `url(javascript:)`, and `behavior`.
 
-- `detect_tor(ip: str, tor_nodes: Optional[list[str]], exit_nodes: Optional[list[str]]) -> dict[str, Any]`: Detecta se um IP pertence à rede Tor verificando contra lista de nós e exit nodes.
+- `sanitize_js(js_code: str, dangerous_patterns: Optional[list[str]]) -> str`: Sanitizes JavaScript by removing dangerous patterns like `eval()`, `Function()`, `document.write()`, etc.
 
-- `detect_ddos(traffic_data: list[dict[str, Any]], baseline: dict[str, float], threshold: float, window: float) -> dict[str, Any]`: Detecta ataques DDoS analisando bytes/packets por segundo contra baseline e threshold.
+- `detect_sqli(input_str: str, patterns: Optional[list[str]], context: Optional[str]) -> dict[str, Any]`: Detects SQL Injection patterns including UNION-based, blind, time-based, and error-based injection.
 
-- `validate_ip(ip: str, allowed_ranges: Optional[list[str]], blocked_ranges: Optional[list[str]]) -> dict[str, Any]`: Valida endereço IP contra ranges permitidos e bloqueados usando CIDR matching.
+- `detect_nosqli(input_str: str, patterns: Optional[list[str]]) -> dict[str, Any]`: Detects NoSQL Injection in MongoDB/NoSQL queries using operators like `$gt`, `$ne`, `$regex`.
 
-- `validate_domain(domain: str, allowed_tlds: Optional[list[str]], blocked_domains: Optional[list[str]]) -> dict[str, Any]`: Valida domínio verificando TLD contra lista permitida e domínio contra lista bloqueada.
+- `detect_ssrf(url: str, allowed_domains: Optional[list[str]], blocked_ips: Optional[list[str]]) -> dict[str, Any]`: Detects Server-Side Request Forgery by verifying URLs against allowed domains and blocked IPs (including localhost, metadata endpoints).
 
-- `detect_spoofing(packet_data: dict[str, Any], expected_source: str, network_topology: dict[str, Any]) -> dict[str, Any]`: Detecta IP spoofing analisando dados do pacote contra fontes esperadas e topologia de rede.
+- `detect_rce(input_str: str, patterns: Optional[list[str]]) -> dict[str, Any]`: Detects Remote Code Execution patterns including `eval()`, `exec()`, `system()`, backticks, and pipe operators.
 
-- `detect_arp_poisoning(arp_table: list[dict[str, Any]], expected_mappings: dict[str, str]) -> dict[str, Any]`: Detecta ARP poisoning comparando tabela ARP atual contra mapeamentos esperados IP→MAC.
+- `detect_lfi(input_str: str, patterns: Optional[list[str]]) -> dict[str, Any]`: Detects Local File Inclusion using path traversal like `../../etc/passwd`, `php://filter`, and `data://` URIs.
 
-- `tls_fingerprint(tls_handshake: dict[str, Any], ja3_database: Optional[dict[str, Any]]) -> dict[str, Any]`: Gera e compara fingerprint TLS do handshake contra database de fingerprints conhecidos.
+- `detect_rfi(input_str: str, patterns: Optional[list[str]]) -> dict[str, Any]`: Detects Remote File Inclusion via external URLs in include/require parameters.
 
-- `ja3_fingerprint(tls_client_hello: dict[str, Any]) -> str`: Gera fingerprint JA3 hash de um TLS ClientHello para identificação de client TLS.
+- `detect_template_injection(input_str: str, engine_type: str) -> dict[str, Any]`: Detects Server-Side Template Injection (SSTI) for Jinja2, EJS, Handlebars, Pug, Twig, etc.
 
-- `suspicious_dns_detection(dns_queries: list[dict[str, Any]], threat_intel: Optional[dict[str, Any]], patterns: Optional[list[str]]) -> dict[str, Any]`: Detecta atividade DNS suspeita usando threat intelligence e pattern matching de domínios maliciosos.
+- `detect_command_injection(input_str: str, patterns: Optional[list[str]]) -> dict[str, Any]`: Detects OS Command Injection using operators like `;`, `|`, `&&`, `||`, backticks, and `$()`.
 
-- `beaconing_detection(connections: list[dict[str, Any]], interval_threshold: float, jitter_threshold: float) -> dict[str, Any]`: Detecta comportamento de beaconing indicativo de comunicação command-and-control (C2).
+- `detect_deserialization_attack(data: Any, allowed_classes: Optional[list[str]]) -> dict[str, Any]`: Detects insecure deserialization by verifying allowed classes and known gadget patterns.
 
-- `lateral_movement_detection(events: list[dict[str, Any]], network_topology: dict[str, Any], user_behavior: Optional[dict[str, Any]]) -> dict[str, Any]`: Detecta movimento lateral na rede analisando padrões de acesso entre hosts.
+- `detect_path_traversal(input_str: str, base_path: Optional[str]) -> dict[str, Any]`: Detects path traversal using `../`, `..\\`, encoded traversal, and verifies path resolves within base_path.
 
-- `command_and_control_detection(traffic_patterns: list[dict[str, Any]], known_c2: Optional[dict[str, Any]], behavioral_analysis: Optional[dict[str, Any]]) -> dict[str, Any]`: Detecta padrões de comunicação C2 usando threat intelligence e análise comportamental.
+- `detect_open_redirect(url: str, allowed_hosts: Optional[list[str]]) -> dict[str, Any]`: Detects open redirect by verifying redirect URL points to an allowed host.
 
-- `network_entropy_analysis(packets: list[dict[str, Any]], block_size: int, threshold: float) -> dict[str, Any]`: Analisa entropia de pacotes de rede para detectar tráfego criptografado ou codificado.
+- `validate_cors(origin: str, allowed_origins: Optional[list[str]], allowed_methods: Optional[list[str]], allowed_headers: Optional[list[str]]) -> dict[str, Any]`: Validates CORS request by checking Origin, Methods, and Headers against allowed lists.
 
-- `traffic_behavior_analysis(traffic_data: list[dict[str, Any]], baseline: dict[str, Any], time_window: float) -> dict[str, Any]`: Analisa comportamento de tráfego contra baselines estabelecidas em janela de tempo.
+- `secure_headers(request: Optional[dict[str, Any]], config: Optional[dict[str, Any]]) -> dict[str, str]`: Generates secure HTTP response headers including HSTS, X-Frame-Options, X-Content-Type-Options, CSP, Referrer-Policy, etc.
 
-- `protocol_anomaly_detection(protocol_data: list[dict[str, Any]], protocol_spec: dict[str, Any], deviation_threshold: float) -> dict[str, Any]`: Detecta anomalias em protocolo comparando dados contra especificação do protocolo.
+- `generate_csp(config: Optional[dict[str, Any]]) -> str`: Generates a Content-Security-Policy header value from directive configuration.
 
-- `shannon_entropy(data: str|bytes) -> float`: Calcula entropia Shannon de dados para medir aleatoriedade/complexidade informacional.
+- `validate_csp(csp_header: str, policy: Optional[dict[str, Any]]) -> bool`: Validates a CSP header against a defined security policy.
 
----
+- `csrf_protect(request: Optional[dict[str, Any]], token: Optional[str], session_token: Optional[str]) -> bool`: Protects against CSRF by verifying request token against session token.
 
-### Python: Cloud (21 funções)
+- `validate_csrf(token: Optional[str], session_token: Optional[str]) -> bool`: Validates a CSRF token against the session token using secure comparison.
 
-Segurança cloud: validação de Dockerfile, detecção de container escape, Kubernetes RBAC, S3 bucket público, IAM policies, detecção de misconfig, secrets manager, Terraform validation, Kubernetes manifests, runtime container protection, supply chain validation, SBOM generation, dependency audit, typosquatting detection, container image scanning, K8s runtime anomaly, cloud security score, workload identity, confidential computing validation.
+- `secure_cookie(name: str, value: str, domain: Optional[str], path: str, secure: bool, httponly: bool, samesite: str, max_age: Optional[int]) -> str`: Generates a secure Set-Cookie header with Secure, HttpOnly, SameSite flags and domain scoping.
 
-#### Funções
+- `detect_clickjacking(headers: Optional[dict[str, str]], frame_options: Optional[str]) -> bool`: Detects clickjacking vulnerability by checking absence of X-Frame-Options or CSP frame-ancestors.
 
-- `validate_dockerfile(dockerfile_content: str, rules: Optional[dict[str, Any]], severity_threshold: str) -> dict[str, Any]`: Valida Dockerfile contra best practices: sem `latest`, sem `root`, com healthcheck, sem secrets hardcoded.
+- `validate_origin(origin: str, allowed_origins: Optional[list[str]]) -> bool`: Validates the Origin header against a list of allowed origins.
 
-- `detect_container_escape(container_config: dict[str, Any], capabilities: Optional[list[str]], namespaces: Optional[list[str]]) -> dict[str, Any]`: Detecta vetores potenciais de container escape como privileged mode, hostPath mounts, capabilities perigosas.
+- `validate_referer(referer: str, expected_domain: str) -> bool`: Validates the Referer header against an expected domain to prevent CSRF and hotlinking.
 
-- `validate_k8s_rbac(rbac_config: dict[str, Any], least_privilege_rules: Optional[dict[str, Any]]) -> dict[str, Any]`: Valida configuração RBAC do Kubernetes contra princípios de menor privilégio.
+- `secure_redirect(url: str, allowed_hosts: Optional[list[str]]) -> str`: Validates and returns a safe redirect URL, preventing open redirect.
 
-- `detect_public_bucket(bucket_config: dict[str, Any], policies: Optional[list[dict[str, Any]]], acl: Optional[str]) -> dict[str, Any]`: Detecta se bucket de cloud storage está publicamente acessível via policy, ACL, ou config.
+- `webhook_signature(payload: str, secret: str, algorithm: str, timestamp: Optional[str]) -> str`: Generates an HMAC signature for webhook payload verification.
 
-- `validate_s3_permissions(bucket_policy: dict[str, Any], expected_permissions: dict[str, Any]) -> dict[str, Any]`: Valida permissões de bucket S3 contra requisitos de segurança esperados.
-
-- `validate_iam_policy(iam_policy: dict[str, Any], allowed_actions: Optional[list[str]], denied_actions: Optional[list[str]]) -> dict[str, Any]`: Valida política IAM contra listas de ações permitidas e negadas, detectando over-permission.
-
-- `detect_cloud_misconfig(config: dict[str, Any], security_baseline: Optional[dict[str, Any]], cloud_provider: str) -> dict[str, Any]`: Detecta misconfigurações de infraestrutura cloud contra baseline de segurança por provider (AWS, GCP, Azure).
-
-- `validate_secrets_manager(secrets_config: dict[str, Any], rotation_policy: Optional[dict[str, Any]], encryption: Optional[dict[str, Any]]) -> dict[str, Any]`: Valida configuração de secrets manager verificando rotação automática, encryption at rest, e acesso.
-
-- `validate_terraform(terraform_plan: dict[str, Any], policies: Optional[list[dict[str, Any]]], severity_threshold: str) -> dict[str, Any]`: Valida plano Terraform contra políticas de segurança detectando recursos inseguros.
-
-- `validate_kubernetes_manifest(manifest: dict[str, Any], pod_security_policy: Optional[dict[str, Any]], network_policy: Optional[dict[str, Any]]) -> dict[str, Any]`: Valida manifest Kubernetes contra pod security policies e network policies.
-
-- `runtime_container_protection(container_events: list[dict[str, Any]], threat_rules: Optional[list[dict[str, Any]]], actions: Optional[dict[str, str]]) -> dict[str, Any]`: Analisa eventos de container em runtime contra regras de ameaça e executa ações (block, alert, isolate).
-
-- `supply_chain_validation(dependencies: list[dict[str, Any]], trusted_sources: Optional[list[str]], vulnerability_db: Optional[dict[str, Any]]) -> dict[str, Any]`: Valida dependências de software contra fontes confiáveis e database de vulnerabilidades.
-
-- `sbom_generator(components: list[dict[str, Any]], format: str, metadata: Optional[dict[str, Any]]) -> dict[str, Any]`: Gera Software Bill of Materials (SBOM) nos formatos SPDX, CycloneDX ou custom.
-
-- `dependency_audit(dependencies: list[dict[str, Any]], audit_db: Optional[dict[str, Any]], severity_threshold: str) -> dict[str, Any]`: Audita dependências contra database de vulnerabilidades com filtro de severidade.
-
-- `detect_typosquatting(package_name: str, known_packages: Optional[list[str]], similarity_threshold: float) -> dict[str, Any]`: Detecta typosquatting comparando nome do package contra packages conhecidos usando similaridade de string.
-
-- `container_image_scan(image_layers: list[dict[str, Any]], signatures: Optional[list[dict[str, Any]]], vulnerability_db: Optional[dict[str, Any]]) -> dict[str, Any]`: Escaneia layers de imagem de container por vulnerabilidades e verifica assinaturas.
-
-- `runtime_k8s_anomaly(k8s_events: list[dict[str, Any]], baseline: Optional[dict[str, Any]], anomaly_threshold: float) -> dict[str, Any]`: Detecta comportamento anômalo em eventos runtime do Kubernetes.
-
-- `cloud_security_score(config: dict[str, Any], benchmarks: Optional[dict[str, Any]], weights: Optional[dict[str, float]]) -> dict[str, Any]`: Calcula score geral de segurança cloud baseado em benchmarks CIS e pesos configuráveis.
-
-- `workload_identity_validation(workload_config: dict[str, Any], identity_provider: Optional[str], trust_policy: Optional[dict[str, Any]]) -> dict[str, Any]`: Valida configuração de workload identity (IRSA, GKE Workload Identity, etc.).
-
-- `confidential_computing_validation(attestation: dict[str, Any], tee_type: str, expected_measurements: Optional[dict[str, str]]) -> dict[str, Any]`: Valida attestation de confidential computing para TEEs (SGX, TDX, SEV-SNP, Nitro Enclaves).
+- `webhook_replay_protection(signature: str, timestamp: str, payload: str, secret: str, window: int) -> bool`: Protects against webhook replay by verifying signature and timestamp within a window.
 
 ---
 
-### Python: Monitoring (20 funções)
+### Python: API (18 functions)
 
-Monitoramento de segurança: tamperproof logging, anomaly scoring, threat scoring, risk scoring, event correlation, real-time alerting, adaptive alerting, attack path analysis, threat graph, behavioral analysis, UEBA, account takeover detection, fraud detection, autonomous response, security event bus, forensic snapshot, incident timeline, MITRE ATT&CK mapping, autonomous triage.
+API security: JSON Schema validation, sanitization, adaptive rate limiting, BOLA/IDOR detection, broken authentication, mass assignment, shadow APIs, GraphQL security (depth limit, cost analysis, abuse detection), gRPC security, WebSocket security, and API key management.
 
-#### Funções
+#### Functions
 
-- `secure_log(event: str, level: str, data: Optional[dict[str, Any]], tamperproof: bool) -> dict[str, Any]`: Cria entrada de log de segurança tamper-resistant com integridade criptográfica (hash chain).
+- `validate_json_schema(data: Any, schema: dict[str, Any], strict_mode: bool) -> dict[str, Any]`: Validates data against a JSON Schema definition with optional strict mode for extra fields.
 
-- `tamperproof_logs(log_entries: list[dict[str, Any]], chain_verification: bool) -> bool`: Verifica integridade de cadeia de logs tamperproof validando hashes encadeados.
+- `validate_input(data: Any, rules: dict[str, Any], max_depth: int, max_size: int) -> dict[str, Any]`: Validates API input data against type, size, pattern, enum, and maximum depth rules.
 
-- `anomaly_score(metrics: dict[str, float], baseline: dict[str, dict[str, float]], weights: Optional[dict[str, float]]) -> float`: Calcula score de anomalia usando z-score estatístico contra baseline com pesos por métrica.
+- `sanitize_json(data: Any, allowed_types: Optional[set[str]], max_string_length: int) -> dict[str, Any]`: Sanitizes JSON data by removing disallowed types and truncating long strings.
 
-- `threat_score(events: list[dict[str, Any]], threat_intel: Optional[dict[str, Any]], context: Optional[dict[str, Any]]) -> float`: Calcula score de ameaça composto a partir de eventos e threat intelligence.
+- `api_rate_limit(client_id: str, endpoint: str, config: Optional[dict[str, Any]]) -> dict[str, Any]`: Enforces API rate limiting using sliding window algorithm with configurable per-client and per-endpoint limits.
 
-- `risk_score(user_id: str, events: list[dict[str, Any]], context: Optional[dict[str, Any]], historical: Optional[dict[str, Any]]) -> float`: Calcula score de risco para usuário baseado em eventos, contexto e histórico.
+- `adaptive_rate_limit(client_id: str, endpoint: str, behavior: dict[str, Any], config: Optional[dict[str, Any]]) -> dict[str, Any]`: Applies adaptive rate limiting based on client behavior patterns (dynamically adjusts limits).
 
-- `correlate_events(events: list[dict[str, Any]], time_window: int, correlation_rules: Optional[list[dict[str, Any]]]) -> list[dict[str, Any]]`: Correlaciona eventos de segurança em janela de tempo usando rule-based matching.
+- `detect_api_abuse(requests: list[dict[str, Any]], patterns: Optional[list[str]], window: int) -> dict[str, Any]`: Detects API abuse patterns such as scraping, enumeration, fuzzing, and malicious automation.
 
-- `realtime_alert(event: dict[str, Any], alert_rules: Optional[list[dict[str, Any]]], notification_channels: Optional[list[str]]) -> dict[str, Any]`: Avalia evento contra regras de alerta e gera alertas em tempo real com notificações.
+- `detect_bola(resource_id: str, user_id: str, ownership_map: dict[str, Any]) -> bool`: Detects Broken Object Level Authorization (BOLA/IDOR) by verifying user access to the requested resource.
 
-- `adaptive_alerting(events: list[dict[str, Any]], baseline: Optional[dict[str, Any]], alert_fatigue_threshold: float) -> dict[str, Any]`: Gera alertas adaptativamente baseado em baseline e gerenciamento de fadiga de alerta.
+- `detect_broken_auth(auth_header: Optional[str], required_scopes: Optional[list[str]], token: Optional[dict[str, Any]]) -> dict[str, Any]`: Detects authentication and authorization issues such as missing, expired, or insufficient-scope tokens.
 
-- `attack_path_analysis(events: list[dict[str, Any]], network_topology: Optional[dict[str, Any]], attack_graph: Optional[dict[str, list[str]]]) -> dict[str, Any]`: Analisa caminhos de ataque potenciais através da rede baseado em eventos e topologia.
+- `detect_mass_assignment(input_data: dict[str, Any], model_fields: set[str], readonly_fields: Optional[set[str]]) -> dict[str, Any]`: Detects mass assignment by checking if protected or unknown fields are being submitted.
 
-- `threat_graph(events: list[dict[str, Any]], entities: Optional[list[dict[str, Any]]], relationships: Optional[list[dict[str, Any]]]) -> dict[str, Any]`: Constrói grafo de conhecimento de ameaça a partir de eventos, entidades e relacionamentos.
+- `detect_shadow_api(endpoint: str, documented_apis: set[str], traffic_patterns: dict[str, Any]) -> dict[str, Any]`: Detects shadow APIs - undocumented endpoints receiving traffic.
 
-- `behavioral_analysis(user_events: list[dict[str, Any]], baseline: Optional[dict[str, Any]], deviation_threshold: float) -> dict[str, Any]`: Analisa comportamento de usuário contra baselines estabelecidas para detectar desvios.
+- `api_threat_score(request: dict[str, Any], context: Optional[dict[str, Any]], threat_intel: Optional[dict[str, Any]]) -> float`: Calculates composite threat score for an API request based on context and threat intelligence.
 
-- `ueba_analysis(user_events: list[dict[str, Any]], peer_group: Optional[dict[str, Any]], anomaly_threshold: float) -> dict[str, Any]`: Realiza User and Entity Behavior Analytics (UEBA) comparando contra peer groups.
+- `graphql_depth_limit(query: str, max_depth: int, introspection_enabled: bool) -> dict[str, Any]`: Validates GraphQL query depth against configured limit, preventing malicious recursive queries.
 
-- `detect_account_takeover(user_events: list[dict[str, Any]], baseline: Optional[dict[str, Any]], risk_factors: Optional[dict[str, Any]]) -> dict[str, Any]`: Detecta tentativas de account takeover baseado em anomalias comportamentais.
+- `graphql_cost_analysis(query: str, complexity_map: Optional[dict[str, int]], max_cost: int) -> dict[str, Any]`: Analyzes computational cost of GraphQL query based on field complexity and nested queries.
 
-- `detect_fraud(transactions: list[dict[str, Any]], patterns: Optional[list[dict[str, Any]]], risk_threshold: float) -> dict[str, Any]`: Detecta fraude potencial em transações usando análise de padrões rule-based.
+- `graphql_abuse_detection(queries: list[dict[str, Any]], window: int, thresholds: Optional[dict[str, Any]]) -> dict[str, Any]`: Detects GraphQL abuse patterns such as query flooding, introspection abuse, and repeated high-cost queries.
 
-- `autonomous_response(threat: dict[str, Any], response_rules: Optional[list[dict[str, Any]]], actions: Optional[list[dict[str, Any]]]) -> dict[str, Any]`: Executa resposta autônoma a incidente baseado em severidade da ameaça e regras.
+- `grpc_security_validation(metadata: dict[str, str], required_headers: Optional[list[str]], tls_info: Optional[dict[str, Any]]) -> dict[str, Any]`: Validates gRPC request security by checking metadata, required headers, and TLS information.
 
-- `security_event_bus(event: dict[str, Any], handlers: Optional[list[dict[str, Any]]], routing: Optional[dict[str, list[str]]]) -> dict[str, Any]`: Roteia eventos de segurança através de event bus para handlers registrados.
+- `secure_websocket(origin: Optional[str], allowed_origins: Optional[list[str]], subprotocols: Optional[list[str]]) -> dict[str, Any]`: Configures and validates secure WebSocket connection with origin validation and allowed subprotocols.
 
-- `forensic_snapshot(system_state: dict[str, Any], evidence: Optional[list[dict[str, Any]]], chain_of_custody: Optional[dict[str, Any]]) -> dict[str, Any]`: Cria snapshot forense do estado do sistema com cadeia de custódia de evidências.
+- `api_key_rotation(current_key: str, algorithm: str, expiry_days: int) -> dict[str, Any]`: Generates a new API key with secure rotation parameters (hash, expiry, prefix).
 
-- `incident_timeline(events: list[dict[str, Any]], incident_id: str, classification: Optional[str]) -> dict[str, Any]`: Constrói timeline cronológica de incidente a partir de eventos de segurança.
-
-- `attack_chain_mapping(events: list[dict[str, Any]], mitre_framework: Optional[dict[str, Any]], kill_chain: Optional[list[str]]) -> dict[str, Any]`: Mapeia eventos de segurança para framework MITRE ATT&CK e Cyber Kill Chain.
-
-- `autonomous_triage(alert: dict[str, Any], triage_rules: Optional[list[dict[str, Any]]], enrichment_sources: Optional[list[dict[str, Any]]]) -> dict[str, Any]`: Realiza triagem autônoma de alertas usando regras e dados de enriquecimento.
+- `api_key_validation(api_key: str, valid_keys: dict[str, Any], scopes: Optional[list[str]], required_scope: Optional[str]) -> dict[str, Any]`: Validates an API key against a registry of known keys, checking scopes and expiration.
 
 ---
 
-### Python: Defensive (20 funções)
+### Python: AI (20 functions)
 
-Defesa ativa: runtime self-protection, anti-debugging, anti-tampering, memory integrity, process integrity, code signing validation, binary integrity, secure boot validation, secure update validation, anti-hook, anti-injection, anti-rootkit, anti-VM, anti-emulation, moving target defense, dynamic attack surface, runtime policy engine, self-healing security, adaptive threat response, autonomous containment.
+AI application protection: prompt injection detection, jailbreak, sensitive data leak, system prompt leak, data exfiltration, impersonation, model abuse, agent abuse, LLM firewall, policy engine, RAG source validation, hallucination risk, output guardrails, tool call validation, multi-agent isolation, memory sanitization, token monitoring, and behavior monitoring.
 
-#### Funções
+#### Functions
 
-- `runtime_self_protection(config: Optional[dict[str, Any]], integrity_checks: Optional[list[str]], monitoring: bool) -> dict[str, Any]`: Habilita mecanismos de auto-proteção em runtime: integrity checks, anti-debug, monitoring.
+- `detect_prompt_injection(prompt: str, patterns: Optional[list[str]], threshold: float) -> dict[str, Any]`: Detects prompt injection attempts such as "ignore previous instructions", "forget all rules", "system:", "you are now", etc.
 
-- `anti_debugging_detection(process_info: Optional[dict[str, Any]], ptrace_status: Optional[str], debugger_signals: Optional[list[str]]) -> dict[str, Any]`: Detecta tentativas de debugging ativo via ptrace, sinais de debugger, e anomalias de processo.
+- `detect_jailbreak(prompt: str, patterns: Optional[list[str]], threshold: float) -> dict[str, Any]`: Detects jailbreaks such as DAN mode, "do anything now", "disable safety", "unrestricted mode", unfiltered roleplay.
 
-- `anti_tampering(binary_hash: Optional[str], expected_hash: Optional[str], integrity_checks: Optional[list[str]]) -> dict[str, Any]`: Verifica integridade de binário comparando hashes esperados contra hashes atuais.
+- `sanitize_prompt(prompt: str, max_length: int, blocked_patterns: Optional[list[str]]) -> str`: Sanitizes user prompt by removing blocked patterns and enforcing length limits.
 
-- `memory_integrity_check(memory_regions: Optional[list[dict[str, Any]]], expected_state: Optional[dict[str, Any]], signatures: Optional[list[str]]) -> dict[str, Any]`: Verifica integridade de regiões de memória contra estado esperado e assinaturas conhecidas.
+- `sanitize_llm_output(output: str, max_length: int, blocked_patterns: Optional[list[str]]) -> str`: Sanitizes LLM output by removing scripts, event handlers, and sensitive data.
 
-- `process_integrity_check(process_id: Optional[int], expected_modules: Optional[list[str]], allowed_parents: Optional[list[str]]) -> dict[str, Any]`: Verifica integridade de processo incluindo módulos carregados e cadeia de processos pais.
+- `detect_sensitive_leak(text: str, patterns: Optional[list[str]]) -> dict[str, Any]`: Detects sensitive data leaks such as SSN, CPF, credit cards, emails, API keys, passwords.
 
-- `code_signing_validation(binary_path: Optional[str], certificate_store: Optional[dict[str, Any]], revocation_check: bool) -> dict[str, Any]`: Valida certificado de code signing de binário contra store confiável e lista de revogação.
+- `detect_prompt_leak(prompt: str, system_prompt: str, threshold: float) -> dict[str, Any]`: Detects attempts to extract or leak the system prompt using content similarity.
 
-- `binary_integrity_validation(binary_path: Optional[str], expected_hashes: Optional[dict[str, str]], sections: Optional[list[str]]) -> dict[str, Any]`: Valida integridade de binário por verificação de hash por seção (.text, .data, .rsrc, etc.).
+- `detect_data_exfiltration(output: str, sensitive_patterns: Optional[list[str]]) -> dict[str, Any]`: Detects potential data exfiltration in LLM output using sensitive data pattern matching.
 
-- `secure_boot_validation(boot_chain: Optional[list[dict[str, Any]]], measurements: Optional[dict[str, str]], pcr_values: Optional[dict[int, str]]) -> dict[str, Any]`: Valida cadeia de secure boot e medições PCR do TPM.
+- `detect_ai_impersonation(content: str, claimed_identity: str, markers: Optional[list[str]]) -> dict[str, Any]`: Detects AI impersonation attempts by verifying identity markers and inconsistencies.
 
-- `secure_update_validation(update_package: Optional[dict[str, Any]], signature: Optional[str], version: Optional[str], channel: str) -> dict[str, Any]`: Valida pacote de update verificando autenticidade, integridade, versão e canal.
+- `detect_model_abuse(request_patterns: list[str], rate: float, complexity: float) -> dict[str, Any]`: Detects model abuse via excessive repetition, high request rate, and abnormal complexity.
 
-- `anti_hook_detection(functions: Optional[list[dict[str, Any]]], memory_regions: Optional[list[dict[str, Any]]], known_hooks: Optional[list[str]]) -> dict[str, Any]`: Detecta hooks de função e modificações inline em memória (IAT hooking, inline hooking).
+- `detect_agent_abuse(agent_behavior: dict[str, Any], policy: dict[str, Any], thresholds: Optional[dict[str, float]]) -> dict[str, Any]`: Detects agent behavior that violates usage policies and configured thresholds.
 
-- `anti_injection_detection(process_modules: Optional[list[str]], loaded_libraries: Optional[list[str]], injection_signatures: Optional[list[str]]) -> dict[str, Any]`: Detecta injeção de código em espaço de memória de processo (DLL injection, process hollowing).
+- `llm_firewall(input_data: dict[str, Any], rules: list[dict[str, Any]], action_on_violation: str) -> dict[str, Any]`: Evaluates input against LLM firewall rules with configurable actions (block, warn, log).
 
-- `anti_rootkit_detection(system_calls: Optional[list[dict[str, Any]]], kernel_modules: Optional[list[str]], hidden_processes: Optional[list[int]]) -> dict[str, Any]`: Detecta indicadores de rootkit em syscalls, módulos kernel, e processos ocultos.
+- `ai_policy_engine(prompt: str, output: str, policies: list[dict[str, Any]]) -> dict[str, Any]`: Evaluates prompt and output against a set of AI security policies.
 
-- `anti_vm_detection(hardware_info: Optional[dict[str, Any]], timing_checks: Optional[list[dict[str, Any]]], vm_artifacts: Optional[list[str]]) -> dict[str, Any]`: Detecta execução em ambiente virtual/sandbox via hardware info, timing checks, e artefatos VM.
+- `rag_source_validation(sources: list[dict[str, Any]], trusted_domains: Optional[list[str]], validation_rules: Optional[dict[str, Any]]) -> dict[str, Any]`: Validates RAG (Retrieval-Augmented Generation) source credibility against trusted domains.
 
-- `anti_emulation_detection(environment_checks: Optional[list[dict[str, Any]]], timing: Optional[dict[str, Any]], api_availability: Optional[list[str]]) -> dict[str, Any]`: Detecta ambientes de emulação/sandbox analysis via environment checks e timing.
+- `hallucination_risk(output: str, confidence_scores: Optional[list[float]], factual_checks: Optional[list[dict[str, Any]]]) -> dict[str, Any]`: Assesses hallucination risk in LLM output based on confidence scores and factual checks.
 
-- `moving_target_runtime(services: Optional[list[dict[str, Any]]], rotation_config: Optional[dict[str, Any]], randomization: Optional[dict[str, Any]]) -> dict[str, Any]`: Implementa moving target defense via rotação de serviços e randomização de layout.
+- `ai_output_guard(output: str, guardrails: Optional[list[dict[str, Any]]], redaction_rules: Optional[list[dict[str, Any]]]) -> str`: Applies guardrails and redaction rules to LLM output.
 
-- `dynamic_attack_surface(endpoints: Optional[list[dict[str, Any]]], exposure_config: Optional[dict[str, Any]], threat_level: str) -> dict[str, Any]`: Ajusta dinamicamente superfície de ataque baseado no nível de ameaça atual.
+- `tool_call_validation(tool_name: str, arguments: dict[str, Any], allowed_tools: list[str], argument_schemas: Optional[dict[str, dict[str, Any]]]) -> dict[str, Any]`: Validates tool call against allowed tools and argument schemas.
 
-- `runtime_policy_engine(policies: Optional[list[dict[str, Any]]], context: Optional[dict[str, Any]], enforcement_mode: str) -> dict[str, Any]`: Avalia e aplica políticas de segurança em runtime com modo de enforcement configurável.
+- `multi_agent_isolation(agents: list[dict[str, Any]], communication_rules: Optional[dict[str, Any]]) -> dict[str, Any]`: Validates multi-agent isolation and communication policies.
 
-- `self_healing_security(state: Optional[dict[str, Any]], healing_rules: Optional[list[dict[str, Any]]], recovery_actions: Optional[list[str]]) -> dict[str, Any]`: Detecta e recupera automaticamente de incidentes de segurança usando regras de healing.
+- `ai_memory_sanitizer(memory_entries: list[dict[str, Any]], retention_policy: Optional[dict[str, Any]]) -> list[dict[str, Any]]`: Sanitizes AI memory entries based on retention policy and expiration.
 
-- `adaptive_threat_response(threat: Optional[dict[str, Any]], response_playbook: Optional[dict[str, Any]], context: Optional[dict[str, Any]]) -> dict[str, Any]`: Executa resposta adaptativa a ameaças baseado em características da ameaça e playbook.
+- `ai_token_monitor(usage: dict[str, int], limits: Optional[dict[str, int]], window: int) -> dict[str, Any]`: Monitors AI token usage against defined limits (per request, minute, day, cost).
 
-- `autonomous_containment(threat: Optional[dict[str, Any]], containment_rules: Optional[list[dict[str, Any]]], network_topology: Optional[dict[str, Any]]) -> dict[str, Any]`: Contém ameaças ativas autonomamente usando regras de contenção e topologia de rede.
-
----
-
-### Python: Honeypot (20 funções)
-
-Honeypots e deception: adaptive honeypot, fake admin panel, fake database, fake API, fake filesystem, fake SSH, fake RDP, fake Kubernetes, fake S3, fake secrets, deceptive routes, attacker behavior tracking, adaptive deception, moving target defense, honeytoken generation, honeycredential detection, decoy endpoints, deceptive responses, fake login page, fake debug panel.
-
-#### Funções
-
-- `adaptive_honeypot(config: dict[str, Any], traffic_analysis: dict[str, Any], threat_level: str) -> dict[str, Any]`: Ajusta dinamicamente configuração do honeypot baseado em tráfego observado e nível de ameaça.
-
-- `fake_admin_panel(template: str, routes: list[str] | None, responses: dict[str, Any] | None) -> dict[str, Any]`: Deploy de fake admin panel realista para atrair e rastrear tentativas de acesso não autorizado.
-
-- `fake_database(schema: dict[str, Any] | None, records: dict[str, list[dict[str, Any]]] | None, connection_string: str) -> dict[str, Any]`: Cria fake database convincente com schema realista e registros de exemplo.
-
-- `fake_api(endpoints: list[str] | None, responses: dict[str, Any] | None, rate_limit: int) -> dict[str, Any]`: Deploy de fake REST API com endpoints realistas e payloads de resposta.
-
-- `fake_filesystem(structure: dict[str, Any] | None, files: dict[str, str] | None, permissions: dict[str, str] | None) -> dict[str, Any]`: Cria fake filesystem realista com estrutura de diretórios e arquivos plausíveis.
-
-- `fake_ssh_service(banner: str, host_key: str | None, port: int) -> dict[str, Any]`: Deploy de fake SSH service que aceita conexões e loga todas as tentativas de interação.
-
-- `fake_rdp_service(banner: str, port: int, authentication: str) -> dict[str, Any]`: Deploy de fake RDP service para detectar e rastrear ataques de remote desktop.
-
-- `fake_kubernetes_cluster(api_server: str, nodes: list[dict[str, Any]] | None, namespaces: list[str] | None) -> dict[str, Any]`: Deploy de fake Kubernetes cluster API para atrair atacantes focados em containers.
-
-- `fake_s3_bucket(bucket_name: str, objects: list[dict[str, Any]] | None, permissions: dict[str, str] | None) -> dict[str, Any]`: Cria fake S3 bucket com objetos realistas e políticas de acesso.
-
-- `fake_secrets(secrets_list: list[dict[str, Any]] | None, rotation_policy: dict[str, Any] | None) -> dict[str, Any]`: Gere e gerencia fake secrets para detectar tentativas de credential harvesting.
-
-- `deceptive_routes(route_patterns: list[str] | None, handlers: dict[str, Any] | None, detection_callback: str | None) -> dict[str, Any]`: Registra rotas enganosas que parecem legítimas mas disparam alertas quando acessadas.
-
-- `attacker_behavior_tracking(session_id: str, actions: list[dict[str, Any]], timeline: list[dict[str, Any]] | None) -> dict[str, Any]`: Rastreia e analisa padrões de comportamento de atacante dentro de sessão honeypot.
-
-- `adaptive_deception(current_deception: dict[str, Any], attacker_profile: dict[str, Any], effectiveness: dict[str, float]) -> dict[str, Any]`: Ajusta dinamicamente táticas de deception baseado em perfil do atacante e efetividade.
-
-- `moving_target_defense(services: list[dict[str, Any]], rotation_interval: int, randomization: dict[str, Any] | None) -> dict[str, Any]`: Implementa moving target defense rotacionando configurações de serviço.
-
-- `honeytoken_generation(token_type: str, metadata: dict[str, Any] | None, tracking: dict[str, Any] | None) -> dict[str, Any]`: Gera honeytokens rastreáveis que alertam quando usados fora de contextos autorizados.
-
-- `honeycredential_detection(credentials: list[dict[str, Any]], honeytoken_db: dict[str, Any]) -> dict[str, Any]`: Verifica credenciais submetidas contra database de honeytokens conhecidos.
-
-- `decoy_endpoints(base_path: str, count: int, patterns: list[str] | None) -> list[dict[str, Any]]`: Gera lista de endpoints API enganosos que imitam endpoints de serviço reais.
-
-- `deceptive_responses(request: dict[str, Any], deception_config: dict[str, Any] | None, attacker_profile: dict[str, Any] | None) -> dict[str, Any]`: Gera respostas enganosas contextualmente baseadas em request e perfil do atacante.
-
-- `fake_login_page(template: str, branding: dict[str, Any] | None, tracking_script: str | None) -> dict[str, Any]`: Deploy de fake login page convincente para capturar tentativas de credential submission.
-
-- `fake_debug_panel(config: dict[str, Any] | None, endpoints: list[str] | None, data: dict[str, Any] | None) -> dict[str, Any]`: Deploy de fake debug/development panel que parece expor informações internas do sistema.
+- `ai_behavior_monitor(behavior_log: list[dict[str, Any]], baseline: Optional[dict[str, Any]], deviation_threshold: float) -> dict[str, Any]`: Monitors AI behavior for deviations from established baseline.
 
 ---
 
-### Python: File (21 funções)
+### Python: Network (21 functions)
 
-Segurança de arquivos: upload seguro, validação de extensão/MIME, detecção de polyglot files, zip bomb, office macros, PDF JavaScript, malware scan, YARA rules, heuristic scan, quarantine, filename sanitization, executable payloads, entropy analysis, sandbox execution, embedded scripts, steganography, obfuscation detection, secure temp files, immutable storage.
+Network security: port scan detection, DNS tunneling, traffic anomalies, proxy/VPN/Tor detection, DDoS, IP/domain validation, IP spoofing, ARP poisoning, TLS fingerprinting (JA3), beaconing detection (C2), lateral movement, C2 communication detection, network entropy analysis, traffic behavior analysis, and protocol anomaly detection.
 
-#### Funções
+#### Functions
 
-- `secure_upload(file_data: bytes, filename: str, allowed_extensions: Optional[list[str]], max_size: int) -> dict[str, Any]`: Valida e processa upload de arquivo de forma segura verificando extensão, MIME, tamanho e conteúdo.
+- `detect_port_scan(source_ip: str, connections: list[dict[str, Any]], window: float, threshold: int) -> dict[str, Any]`: Detects port scanning activity by analyzing unique ports, connection rate, SYN/RST patterns.
 
-- `validate_extension(filename: str, allowed_extensions: list[str]) -> bool`: Valida se um arquivo tem extensão permitida na lista de allowlist.
+- `detect_dns_tunneling(dns_queries: list[dict[str, Any]], domain: str, threshold: float) -> dict[str, Any]`: Detects DNS tunneling by analyzing query entropy, subdomain size, and frequency.
 
-- `validate_mime(file_data: bytes, expected_mime: Optional[str], magic_bytes: Optional[dict[str, bytes]]) -> dict[str, Any]`: Valida MIME type usando detecção de magic bytes, prevenindo spoofing de extensão.
+- `detect_traffic_anomaly(traffic_data: list[dict[str, Any]], baseline: dict[str, float], deviation_threshold: float) -> dict[str, Any]`: Detects traffic anomalies by comparing current metrics against baseline using z-score.
 
-- `detect_polyglot_file(file_data: bytes, signatures: Optional[list[dict[str, Any]]]) -> dict[str, Any]`: Detecta se arquivo contém múltiplas assinaturas de formato (polyglot file attack).
+- `detect_proxy(ip: str, headers: dict[str, str], detection_methods: Optional[list[str]]) -> dict[str, Any]`: Detects if a connection comes through a proxy by checking headers like X-Forwarded-For, Via, etc.
 
-- `detect_zip_bomb(file_data: bytes, max_ratio: float, max_uncompressed: int) -> dict[str, Any]`: Detecta potencial zip bomb analisando ratios de compressão e tamanho descomprimido.
+- `detect_vpn(ip: str, headers: dict[str, str], vpn_db: Optional[dict[str, Any]]) -> dict[str, Any]`: Detects if an IP originates from a VPN service using a known IP database.
 
-- `detect_office_macro(file_data: bytes, file_type: Optional[str]) -> dict[str, Any]`: Detecta macros VBA em documentos Office (Word, Excel, PowerPoint) que podem executar código malicioso.
+- `detect_tor(ip: str, tor_nodes: Optional[list[str]], exit_nodes: Optional[list[str]]) -> dict[str, Any]`: Detects if an IP belongs to the Tor network by checking against node and exit node lists.
 
-- `detect_pdf_javascript(file_data: bytes) -> dict[str, Any]`: Detecta JavaScript embutido em arquivos PDF que pode executar ações maliciosas.
+- `detect_ddos(traffic_data: list[dict[str, Any]], baseline: dict[str, float], threshold: float, window: float) -> dict[str, Any]`: Detects DDoS attacks by analyzing bytes/packets per second against baseline and threshold.
 
-- `malware_scan(file_data: bytes, signatures: Optional[list[dict[str, Any]]], yara_rules: Optional[list[dict[str, Any]]]) -> dict[str, Any]`: Escaneia arquivo por malware usando signature matching e regras YARA.
+- `validate_ip(ip: str, allowed_ranges: Optional[list[str]], blocked_ranges: Optional[list[str]]) -> dict[str, Any]`: Validates IP address against allowed and blocked ranges using CIDR matching.
 
-- `yara_scan(file_data: bytes, rules: Optional[list[dict[str, Any]]], namespace: Optional[str]) -> dict[str, Any]`: Escaneia arquivo usando regras YARA-like pattern matching com namespace opcional.
+- `validate_domain(domain: str, allowed_tlds: Optional[list[str]], blocked_domains: Optional[list[str]]) -> dict[str, Any]`: Validates domain by checking TLD against allowed list and domain against blocked list.
 
-- `heuristic_scan(file_data: bytes, heuristics: Optional[list[dict[str, Any]]], threshold: float) -> dict[str, Any]`: Realiza análise heurística para detectar comportamento suspeito em arquivos.
+- `detect_spoofing(packet_data: dict[str, Any], expected_source: str, network_topology: dict[str, Any]) -> dict[str, Any]`: Detects IP spoofing by analyzing packet data against expected sources and network topology.
 
-- `quarantine_file(filepath: str, quarantine_dir: Optional[str], reason: str) -> str`: Move arquivo para diretório de quarentena com metadata tracking.
+- `detect_arp_poisoning(arp_table: list[dict[str, Any]], expected_mappings: dict[str, str]) -> dict[str, Any]`: Detects ARP poisoning by comparing current ARP table against expected IP-to-MAC mappings.
 
-- `sanitize_filename(filename: str, max_length: int, allowed_chars: Optional[str]) -> str`: Sanitiza nome de arquivo removendo caracteres perigosos e path traversal.
+- `tls_fingerprint(tls_handshake: dict[str, Any], ja3_database: Optional[dict[str, Any]]) -> dict[str, Any]`: Generates and matches TLS fingerprint from handshake data against known fingerprint database.
 
-- `detect_executable_payload(file_data: bytes, file_type: Optional[str]) -> dict[str, Any]`: Detecta payloads executáveis embutidos em arquivos não-executáveis.
+- `ja3_fingerprint(tls_client_hello: dict[str, Any]) -> str`: Generates a JA3 fingerprint hash from a TLS ClientHello for TLS client identification.
 
-- `entropy_analysis(file_data: bytes, block_size: int, threshold: float) -> dict[str, Any]`: Calcula entropia Shannon de dados do arquivo para detectar criptografia ou compressão.
+- `suspicious_dns_detection(dns_queries: list[dict[str, Any]], threat_intel: Optional[dict[str, Any]], patterns: Optional[list[str]]) -> dict[str, Any]`: Detects suspicious DNS activity using threat intelligence and malicious domain pattern matching.
 
-- `sandbox_execute(file_path: str, sandbox_config: Optional[dict[str, Any]], timeout: int) -> dict[str, Any]`: Executa arquivo em ambiente sandboxed para análise comportamental.
+- `beaconing_detection(connections: list[dict[str, Any]], interval_threshold: float, jitter_threshold: float) -> dict[str, Any]`: Detects beaconing behavior indicative of command-and-control (C2) communication.
 
-- `detect_embedded_script(file_data: bytes, file_type: Optional[str], script_types: Optional[list[str]]) -> dict[str, Any]`: Detecta scripts embutidos em arquivos (JavaScript em PDF, macros em Office, etc.).
+- `lateral_movement_detection(events: list[dict[str, Any]], network_topology: dict[str, Any], user_behavior: Optional[dict[str, Any]]) -> dict[str, Any]`: Detects lateral movement within a network by analyzing access patterns between hosts.
 
-- `detect_steganography(file_data: bytes, analysis_methods: Optional[list[str]]) -> dict[str, Any]`: Detecta esteganografia potencial em arquivos de imagem usando LSB, appended data, entropy, histogram.
+- `command_and_control_detection(traffic_patterns: list[dict[str, Any]], known_c2: Optional[dict[str, Any]], behavioral_analysis: Optional[dict[str, Any]]) -> dict[str, Any]`: Detects C2 communication patterns using threat intelligence and behavioral analysis.
 
-- `detect_obfuscation(file_data: bytes, detection_methods: Optional[list[str]]) -> dict[str, Any]`: Detecta conteúdo ofuscado em arquivos (base64, hex, string concatenation, control flow).
+- `network_entropy_analysis(packets: list[dict[str, Any]], block_size: int, threshold: float) -> dict[str, Any]`: Analyzes network packet entropy to detect encrypted or encoded traffic.
 
-- `secure_tempfile(prefix: str, suffix: str, directory: Optional[str], delete_on_close: bool) -> str`: Cria arquivo temporário seguro com permissões restritas e auto-deleção opcional.
+- `traffic_behavior_analysis(traffic_data: list[dict[str, Any]], baseline: dict[str, Any], time_window: float) -> dict[str, Any]`: Analyzes network traffic behavior against established baselines within a time window.
 
-- `immutable_storage_check(filepath: str, expected_hash: Optional[str], storage_type: str) -> bool`: Verifica integridade de arquivo contra hash esperado para storage imutável.
+- `protocol_anomaly_detection(protocol_data: list[dict[str, Any]], protocol_spec: dict[str, Any], deviation_threshold: float) -> dict[str, Any]`: Detects protocol anomalies by comparing data against protocol specification.
 
----
-
-### Python: Enterprise (10 funções)
-
-Conformidade enterprise: LGPD (Brasil), GDPR (EU), HIPAA (saúde), PCI-DSS (pagamentos), compliance reports, audit trails, policy as code, real-time security dashboard, tenant isolation, multi-region security.
-
-#### Funções
-
-- `lgpd_check(system_config: dict[str, Any], data_flows: list[dict[str, Any]], controls: dict[str, Any]) -> dict[str, Any]`: Verifica conformidade com LGPD (Lei Geral de Proteção de Dados - Brasil): consentimento, DPO, data subject rights, etc.
-
-- `gdpr_check(system_config: dict[str, Any], data_processing: list[dict[str, Any]], controls: dict[str, Any]) -> dict[str, Any]`: Verifica conformidade com GDPR (EU): lawful basis, DPO, data minimization, right to be forgotten, etc.
-
-- `hipaa_check(system_config: dict[str, Any], phi_handling: list[dict[str, Any]], controls: dict[str, Any]) -> dict[str, Any]`: Verifica conformidade com HIPAA (saúde): PHI encryption, access controls, audit controls, etc.
-
-- `pci_check(system_config: dict[str, Any], card_data_handling: list[dict[str, Any]], controls: dict[str, Any]) -> dict[str, Any]`: Verifica conformidade com PCI-DSS (pagamentos): card data encryption, network segmentation, access control, etc.
-
-- `compliance_report(checks: list[dict[str, Any]], framework: str, scope: dict[str, Any]) -> dict[str, Any]`: Gera relatório de compliance abrangente a partir de múltiplos resultados de check.
-
-- `audit_trail(events: list[dict[str, Any]], user_actions: list[dict[str, Any]], data_changes: list[dict[str, Any]]) -> dict[str, Any]`: Gera audit trail imutável a partir de eventos de segurança, ações de usuários e mudanças de dados.
-
-- `policy_as_code(policies: list[dict[str, Any]], context: dict[str, Any], enforcement: dict[str, Any]) -> dict[str, Any]`: Avalia e aplica políticas de segurança definidas como código (IaC para security policies).
-
-- `realtime_security_dashboard(metrics: dict[str, Any], alerts: list[dict[str, Any]], trends: dict[str, Any]) -> dict[str, Any]`: Gera dashboard de segurança em tempo real a partir de métricas, alertas e tendências.
-
-- `tenant_isolation(tenant_config: dict[str, Any], network_policies: list[dict[str, Any]], data_segregation: dict[str, Any]) -> dict[str, Any]`: Verifica e aplica isolamento de tenant em ambiente multi-tenant.
-
-- `multi_region_security(regions: list[dict[str, Any]], data_residency_rules: dict[str, Any], encryption: dict[str, Any]) -> dict[str, Any]`: Avalia postura de segurança multi-region e conformidade de data residency.
+- `shannon_entropy(data: str|bytes) -> float`: Calculates Shannon entropy of data to measure randomness/informational complexity.
 
 ---
 
-### Python: Integrations (10 funções)
+### Python: Cloud (21 functions)
 
-Integrações com frameworks: FastAPI, Django, Flask, Celery, SQLAlchemy, async threat pipeline, YARA real-time engine, AI threat classifier, secure CLI runtime, Python runtime guard.
+Cloud security: Dockerfile validation, container escape detection, Kubernetes RBAC, S3 public bucket detection, IAM policies, misconfig detection, secrets manager, Terraform validation, Kubernetes manifests, runtime container protection, supply chain validation, SBOM generation, dependency audit, typosquatting detection, container image scanning, K8s runtime anomaly, cloud security score, workload identity, confidential computing validation.
 
-#### Funções
+#### Functions
 
-- `fastapi_security_dependency(config: dict[str, Any], security_schemes: dict[str, Any], middleware_config: dict[str, Any]) -> dict[str, Any]`: Cria dependência de segurança FastAPI com OAuth2, validação JWT, e rate limiting.
+- `validate_dockerfile(dockerfile_content: str, rules: Optional[dict[str, Any]], severity_threshold: str) -> dict[str, Any]`: Validates Dockerfile against best practices: no `latest`, no `root`, with healthcheck, no hardcoded secrets.
 
-- `django_security_middleware(config: dict[str, Any], settings: dict[str, Any], middleware_config: dict[str, Any]) -> dict[str, Any]`: Cria middleware de segurança Django com CSP, CSRF, e security headers.
+- `detect_container_escape(container_config: dict[str, Any], capabilities: Optional[list[str]], namespaces: Optional[list[str]]) -> dict[str, Any]`: Detects potential container escape vectors such as privileged mode, hostPath mounts, dangerous capabilities.
 
-- `flask_security_extension(app: Any, config: dict[str, Any], security_config: dict[str, Any]) -> dict[str, Any]`: Cria extensão de segurança Flask com security wrappers e proteção de requisições.
+- `validate_k8s_rbac(rbac_config: dict[str, Any], least_privilege_rules: Optional[dict[str, Any]]) -> dict[str, Any]`: Validates Kubernetes RBAC configuration against least privilege principles.
 
-- `celery_security_monitor(app: Any, config: dict[str, Any], task_security: dict[str, Any]) -> dict[str, Any]`: Cria monitor de segurança para tarefas Celery com validação e audit logging.
+- `detect_public_bucket(bucket_config: dict[str, Any], policies: Optional[list[dict[str, Any]]], acl: Optional[str]) -> dict[str, Any]`: Detects if a cloud storage bucket is publicly accessible via policy, ACL, or configuration.
 
-- `sqlalchemy_query_protection(query: Any, user_permissions: dict[str, Any], row_level_security: dict[str, Any]) -> dict[str, Any]`: Aplica proteção a queries SQLAlchemy com row-level security e permission filtering.
+- `validate_s3_permissions(bucket_policy: dict[str, Any], expected_permissions: dict[str, Any]) -> dict[str, Any]`: Validates S3 bucket permissions against expected security requirements.
 
-- `async_threat_pipeline(config: dict[str, Any], processors: list[dict[str, Any]], output_channels: list[dict[str, Any]]) -> dict[str, Any]`: Cria pipeline assíncrono de detecção de ameaças com processadores configuráveis.
+- `validate_iam_policy(iam_policy: dict[str, Any], allowed_actions: Optional[list[str]], denied_actions: Optional[list[str]]) -> dict[str, Any]`: Validates IAM policy against allowed and denied action lists, detecting over-permission.
 
-- `yara_realtime_engine(rules: list[dict[str, Any]], watch_dirs: list[str], scan_interval: int) -> dict[str, Any]`: Cria engine de escaneamento YARA em tempo real com file watch e rule matching.
+- `detect_cloud_misconfig(config: dict[str, Any], security_baseline: Optional[dict[str, Any]], cloud_provider: str) -> dict[str, Any]`: Detects cloud infrastructure misconfigurations against security baselines per provider (AWS, GCP, Azure).
 
-- `ai_threat_classifier(model_path: str, classification_rules: dict[str, Any], confidence_threshold: float) -> dict[str, Any]`: Cria classificador de ameaças com IA usando modelo treinado e threshold de confiança.
+- `validate_secrets_manager(secrets_config: dict[str, Any], rotation_policy: Optional[dict[str, Any]], encryption: Optional[dict[str, Any]]) -> dict[str, Any]`: Validates secrets manager configuration checking automatic rotation, encryption at rest, and access controls.
 
-- `secure_cli_runtime(config: dict[str, Any], input_sanitization: dict[str, Any], timeout_config: dict[str, Any]) -> dict[str, Any]`: Cria runtime CLI seguro com sanitização de input e timeouts de execução.
+- `validate_terraform(terraform_plan: dict[str, Any], policies: Optional[list[dict[str, Any]]], severity_threshold: str) -> dict[str, Any]`: Validates Terraform plan against security policies detecting insecure resources.
 
-- `python_runtime_guard(config: dict[str, Any], import_whitelist: list[str], sandbox_config: dict[str, Any]) -> dict[str, Any]`: Cria guard de runtime Python com import whitelisting e sandboxing.
+- `validate_kubernetes_manifest(manifest: dict[str, Any], pod_security_policy: Optional[dict[str, Any]], network_policy: Optional[dict[str, Any]]) -> dict[str, Any]`: Validates Kubernetes manifest against pod security policies and network policies.
 
----
+- `runtime_container_protection(container_events: list[dict[str, Any]], threat_rules: Optional[list[dict[str, Any]]], actions: Optional[dict[str, str]]) -> dict[str, Any]`: Analyzes runtime container events against threat rules and executes actions (block, alert, isolate).
 
-## Módulos TypeScript
+- `supply_chain_validation(dependencies: list[dict[str, Any]], trusted_sources: Optional[list[str]], vulnerability_db: Optional[dict[str, Any]]) -> dict[str, Any]`: Validates software dependencies against trusted sources and vulnerability database.
 
-### TS: Core (11 funções)
+- `sbom_generator(components: list[dict[str, Any]], format: str, metadata: Optional[dict[str, Any]]) -> dict[str, Any]`: Generates Software Bill of Materials (SBOM) in SPDX, CycloneDX, or custom format.
 
-Infraestrutura base: configuração, logging estruturado com pino, métricas, cache LRU, policy engine, event bus, telemetria OpenTelemetry, exceções de segurança, e spans de tracing.
+- `dependency_audit(dependencies: list[dict[str, Any]], audit_db: Optional[dict[str, Any]], severity_threshold: str) -> dict[str, Any]`: Audits dependencies against vulnerability database with severity filtering.
 
-#### Funções
+- `detect_typosquatting(package_name: str, known_packages: Optional[list[str]], similarity_threshold: float) -> dict[str, Any]`: Detects typosquatting by comparing package name against known packages using string similarity.
 
-- `getConfig(): MSFConfig`: Obtém a configuração global do framework. Cria instância default se não existir.
+- `container_image_scan(image_layers: list[dict[str, Any]], signatures: Optional[list[dict[str, Any]]], vulnerability_db: Optional[dict[str, Any]]) -> dict[str, Any]`: Scans container image layers for vulnerabilities and verifies signatures.
 
-- `setConfig(config: MSFConfig): void`: Define a configuração global do framework.
+- `runtime_k8s_anomaly(k8s_events: list[dict[str, Any]], baseline: Optional[dict[str, Any]], anomaly_threshold: float) -> dict[str, Any]`: Detects anomalous behavior in Kubernetes runtime events.
 
-- `reloadConfig(): MSFConfig`: Recarrega a configuração a partir de variáveis de ambiente.
+- `cloud_security_score(config: dict[str, Any], benchmarks: Optional[dict[str, Any]], weights: Optional[dict[str, float]]) -> dict[str, Any]`: Calculates overall cloud security score based on CIS benchmarks and configurable weights.
 
-- `getLogger(component: string, options?: MSFLoggerOptions): MSFLogger`: Obtém logger estruturado com pino para um componente.
+- `workload_identity_validation(workload_config: dict[str, Any], identity_provider: Optional[str], trust_policy: Optional[dict[str, Any]]) -> dict[str, Any]`: Validates workload identity configuration (IRSA, GKE Workload Identity, etc.).
 
-- `getMetrics(): MetricsRegistry`: Obtém o registrador de métricas global com counters, gauges, histograms.
-
-- `getPolicyEngine(): PolicyEngine`: Obtém o singleton do motor de políticas de segurança.
-
-- `getEventBus(maxHistory?: number, maxDeadLetter?: number): EventBus`: Obtém o barramento de eventos com histórico e dead letter queue.
-
-- `getCache(options?: Partial<CacheOptions>): CacheManager`: Obtém gerenciador de cache LRU com TTL e invalidação.
-
-- `getTelemetry(serviceName?: string, serviceVersion?: string, enabled?: boolean): TelemetryManager`: Obtém gerenciador de telemetria OpenTelemetry.
-
-- `createSpan(name: string, attributes: Record<string, string | number | boolean>): otel.Span`: Cria span de tracing OpenTelemetry com atributos.
-
-- `redactPII(value: string): string`: Reduz dados PII (Personally Identifiable Information) de uma string.
+- `confidential_computing_validation(attestation: dict[str, Any], tee_type: str, expected_measurements: Optional[dict[str, str]]) -> dict[str, Any]`: Validates confidential computing attestation for TEEs (SGX, TDX, SEV-SNP, Nitro Enclaves).
 
 ---
 
-### TS: Auth (7 funções)
+### Python: Monitoring (20 functions)
 
-Autenticação: TOTP, backup codes, password entropy, device/browser fingerprinting, phishing-resistant auth.
+Security monitoring: tamperproof logging, anomaly scoring, threat scoring, risk scoring, event correlation, real-time alerting, adaptive alerting, attack path analysis, threat graph, behavioral analysis, UEBA, account takeover detection, fraud detection, autonomous response, security event bus, forensic snapshot, incident timeline, MITRE ATT&CK mapping, autonomous triage.
 
-#### Funções
+#### Functions
 
-- `generateTotp(secret: string, digits: number = 6, period: number = 30, timeStep?: number): string`: Gera código TOTP com dígitos e período configuráveis.
+- `secure_log(event: str, level: str, data: Optional[dict[str, Any]], tamperproof: bool) -> dict[str, Any]`: Creates a tamper-resistant security log entry with cryptographic integrity (hash chain).
 
-- `validateTotp(secret: string, token: string, digits: number = 6, period: number = 30, drift: number = 1): boolean`: Valida token TOTP com tolerância de drift.
+- `tamperproof_logs(log_entries: list[dict[str, Any]], chain_verification: bool) -> bool`: Verifies integrity of tamperproof log chain by validating chained hashes.
 
-- `verifyBackupCode(code: string, validCodes: string[]): boolean`: Verifica e consome um backup code.
+- `anomaly_score(metrics: dict[str, float], baseline: dict[str, dict[str, float]], weights: Optional[dict[str, float]]) -> float`: Calculates anomaly score using z-score statistical deviation from baseline with per-metric weights.
 
-- `passwordEntropy(password: string): number`: Calcula entropia Shannon de senha.
+- `threat_score(events: list[dict[str, Any]], threat_intel: Optional[dict[str, Any]], context: Optional[dict[str, Any]]) -> float`: Calculates composite threat score from events and threat intelligence.
 
-- `deviceFingerprint(userAgent: string, screen: string, timezone: string, languages: string[], platform: string): string`: Gera fingerprint de dispositivo.
+- `risk_score(user_id: str, events: list[dict[str, Any]], context: Optional[dict[str, Any]], historical: Optional[dict[str, Any]]) -> float`: Calculates risk score for a user based on events, context, and history.
 
-- `browserFingerprint(canvasHash: string, webglHash: string, audioHash: string, fonts: string[]): string`: Gera fingerprint de browser.
+- `correlate_events(events: list[dict[str, Any]], time_window: int, correlation_rules: Optional[list[dict[str, Any]]]) -> list[dict[str, Any]]`: Correlates security events within a time window using rule-based matching.
 
-- `phishingResistantAuth(authMethod: string, fidoLevel: number, attestation: string): boolean`: Verifica se método de auth é phishing-resistant.
+- `realtime_alert(event: dict[str, Any], alert_rules: Optional[list[dict[str, Any]]], notification_channels: Optional[list[str]]) -> dict[str, Any]`: Evaluates event against alert rules and generates real-time alerts with notifications.
 
----
+- `adaptive_alerting(events: list[dict[str, Any]], baseline: Optional[dict[str, Any]], alert_fatigue_threshold: float) -> dict[str, Any]`: Adaptively generates alerts based on baseline deviation and alert fatigue management.
 
-### TS: Crypto (5 funções)
+- `attack_path_analysis(events: list[dict[str, Any]], network_topology: Optional[dict[str, Any]], attack_graph: Optional[dict[str, list[str]]]) -> dict[str, Any]`: Analyzes potential attack paths through the network based on events and topology.
 
-Criptografia: random seguro, HMAC, memory-safe erase, timing-safe compare.
+- `threat_graph(events: list[dict[str, Any]], entities: Optional[list[dict[str, Any]]], relationships: Optional[list[dict[str, Any]]]) -> dict[str, Any]`: Builds a threat knowledge graph from events, entities, and relationships.
 
-#### Funções
+- `behavioral_analysis(user_events: list[dict[str, Any]], baseline: Optional[dict[str, Any]], deviation_threshold: float) -> dict[str, Any]`: Analyzes user behavior against established baselines to detect deviations.
 
-- `secureRandom(nbytes: number): Uint8Array`: Gera bytes criptograficamente seguros usando `crypto.getRandomValues()`.
+- `ueba_analysis(user_events: list[dict[str, Any]], peer_group: Optional[dict[str, Any]], anomaly_threshold: float) -> dict[str, Any]`: Performs User and Entity Behavior Analytics (UEBA) comparing against peer groups.
 
-- `generateHmac(data: Uint8Array | string, key: Uint8Array | string, algorithm: HmacAlgorithm = 'hmac-sha256'): string`: Gera HMAC para autenticação de integridade.
+- `detect_account_takeover(user_events: list[dict[str, Any]], baseline: Optional[dict[str, Any]], risk_factors: Optional[dict[str, Any]]) -> dict[str, Any]`: Detects potential account takeover attempts based on behavioral anomalies.
 
-- `verifyHmac(data: Uint8Array | string, signature: string, key: Uint8Array | string, algorithm: HmacAlgorithm = 'hmac-sha256'): boolean`: Verifica HMAC comparando assinatura.
+- `detect_fraud(transactions: list[dict[str, Any]], patterns: Optional[list[dict[str, Any]]], risk_threshold: float) -> dict[str, Any]`: Detects potential fraud in transaction patterns using rule-based analysis.
 
-- `secureMemoryErase(data: Uint8Array): void`: Apaga seguramente dados da memória sobrescrevendo.
+- `autonomous_response(threat: dict[str, Any], response_rules: Optional[list[dict[str, Any]]], actions: Optional[list[dict[str, Any]]]) -> dict[str, Any]`: Executes autonomous incident response based on threat severity and rules.
 
-- `antiTimingCompare(a: Uint8Array, b: Uint8Array): boolean`: Compara em tempo constante para prevenir timing attacks.
+- `security_event_bus(event: dict[str, Any], handlers: Optional[list[dict[str, Any]]], routing: Optional[dict[str, list[str]]]) -> dict[str, Any]`: Routes security events through an event bus to registered handlers.
 
----
+- `forensic_snapshot(system_state: dict[str, Any], evidence: Optional[list[dict[str, Any]]], chain_of_custody: Optional[dict[str, Any]]) -> dict[str, Any]`: Creates a forensic snapshot of system state with evidence chain of custody.
 
-### TS: Web (35 funções)
+- `incident_timeline(events: list[dict[str, Any]], incident_id: str, classification: Optional[str]) -> dict[str, Any]`: Builds a chronological incident timeline from security events.
 
-Detecção de ataques web e sanitização: XSS, SQLi, NoSQLi, SSRF, RCE, LFI, RFI, SSTI, Command Injection, Deserialization, Path Traversal, Open Redirect, CORS, CSP, CSRF, secure cookies, clickjacking, webhooks.
+- `attack_chain_mapping(events: list[dict[str, Any]], mitre_framework: Optional[dict[str, Any]], kill_chain: Optional[list[str]]) -> dict[str, Any]`: Maps security events to MITRE ATT&CK framework and Cyber Kill Chain stages.
 
-#### Funções
-
-- `detectXss(input: string, patterns?: RegExp[], severityThreshold: number = 0.3): DetectionResult`: Detecta padrões XSS incluindo script tags, event handlers, javascript: URIs.
-
-- `sanitizeHtml(html: string, allowedTags: string[], allowedAttrs: string[]): string`: Sanitiza HTML removendo tags e atributos não permitidos.
-
-- `sanitizeSvg(svg: string, allowedElements: string[]): string`: Sanitiza SVG removendo elementos perigosos.
-
-- `sanitizeMarkdown(markdown: string, allowedHtml: string[]): string`: Sanitiza markdown removendo HTML perigoso embutido.
-
-- `sanitizeCss(css: string, allowedProperties: string[]): string`: Sanitiza CSS removendo propriedades perigosas.
-
-- `sanitizeJs(jsCode: string, dangerousPatterns: RegExp[]): string`: Sanitiza JavaScript removendo `eval()`, `Function()`, `document.write()`, etc.
-
-- `detectSqli(input: string, patterns?: RegExp[], context?: string): DetectionResult`: Detecta SQL injection (UNION, blind, time-based, error-based).
-
-- `detectNosqli(input: string, patterns?: RegExp[]): DetectionResult`: Detecta NoSQL injection em queries MongoDB/NoSQL.
-
-- `detectSsrf(url: string, allowedDomains: string[], blockedIps: string[]): DetectionResult`: Detecta SSRF verificando URLs contra allowlist e blocklist.
-
-- `detectRce(input: string, patterns?: RegExp[]): DetectionResult`: Detecta Remote Code Execution patterns.
-
-- `detectLfi(input: string, patterns?: RegExp[]): DetectionResult`: Detecta Local File Inclusion via path traversal.
-
-- `detectRfi(input: string, patterns?: RegExp[]): DetectionResult`: Detecta Remote File Inclusion via URLs externas.
-
-- `detectTemplateInjection(input: string, engineType: 'jinja2' | 'ejs' | 'handlebars' | 'mustache' | 'pug' | 'twig' | 'generic'): DetectionResult`: Detecta Server-Side Template Injection para múltiplos engines.
-
-- `detectCommandInjection(input: string, patterns?: RegExp[]): DetectionResult`: Detecta OS Command Injection.
-
-- `detectDeserializationAttack(data: string, allowedClasses: string[]): DetectionResult`: Detecta insecure deserialization.
-
-- `detectPathTraversal(input: string, basePath: string): DetectionResult`: Detecta path traversal verificando resolução dentro do basePath.
-
-- `detectOpenRedirect(url: string, allowedHosts: string[]): DetectionResult`: Detecta open redirect verificando hosts permitidos.
-
-- `validateCors(origin: string | undefined, allowedOrigins: string[], allowedMethods: string[], allowedHeaders: string[]): CorsResult`: Valida requisição CORS.
-
-- `secureHeaders(request: SecureHeadersRequest, config: SecureHeadersConfig): Record<string, string>`: Gera headers HTTP seguros.
-
-- `generateCsp(config: CspConfig): string`: Gera header Content-Security-Policy.
-
-- `validateCsp(cspHeader: string, policy: CspConfig): boolean`: Valida header CSP contra política.
-
-- `csrfProtect(request: CsrfRequest, token: string, sessionToken: string): boolean`: Protege contra CSRF.
-
-- `validateCsrf(token: string, sessionToken: string): boolean`: Valida token CSRF.
-
-- `secureCookie(name: string, value: string, options: SecureCookieOptions): string`: Gera header Set-Cookie seguro.
-
-- `detectClickjacking(headers: Record<string, string>, frameOptions: string): boolean`: Detecta vulnerabilidade de clickjacking.
-
-- `validateOrigin(origin: string, allowedOrigins: string[]): boolean`: Valida header Origin.
-
-- `validateReferer(referer: string | undefined, expectedDomain: string): boolean`: Valida header Referer.
-
-- `secureRedirect(url: string, allowedHosts: string[]): string`: Valida URL de redirect segura.
-
-- `webhookSignature(payload: string, secret: string, algorithm: 'sha256' | 'sha384' | 'sha512' | 'sha3-256', timestamp?: number): string`: Gera assinatura de webhook.
-
-- `webhookReplayProtection(signature: string, timestamp: number, payload: string, secret: string, window: number): boolean`: Protege contra replay de webhooks.
+- `autonomous_triage(alert: dict[str, Any], triage_rules: Optional[list[dict[str, Any]]], enrichment_sources: Optional[list[dict[str, Any]]]) -> dict[str, Any]`: Autonomously triages security alerts using rules and enrichment data.
 
 ---
 
-### TS: API (16 funções)
+### Python: Defensive (20 functions)
 
-Segurança de APIs: JSON Schema validation, input validation, sanitization, API abuse detection, BOLA, broken auth, mass assignment, shadow API, threat scoring, GraphQL (depth, cost, abuse), gRPC, WebSocket, API key rotation/validation.
+Active defense: runtime self-protection, anti-debugging, anti-tampering, memory integrity, process integrity, code signing validation, binary integrity, secure boot validation, secure update validation, anti-hook, anti-injection, anti-rootkit, anti-VM, anti-emulation, moving target defense, dynamic attack surface, runtime policy engine, self-healing security, adaptive threat response, autonomous containment.
 
-#### Funções
+#### Functions
 
-- `validateJsonSchema(data: unknown, schema: Record<string, unknown>, strictMode = false): ValidationResult`: Valida dados contra JSON Schema.
+- `runtime_self_protection(config: Optional[dict[str, Any]], integrity_checks: Optional[list[str]], monitoring: bool) -> dict[str, Any]`: Enables runtime self-protection mechanisms: integrity checks, anti-debug, monitoring.
 
-- `validateInput(data: unknown, rules: Record<string, {...}>, maxDepth = 5, maxSize = 1048576): ValidationResult`: Valida input de API contra regras.
+- `anti_debugging_detection(process_info: Optional[dict[str, Any]], ptrace_status: Optional[str], debugger_signals: Optional[list[str]]) -> dict[str, Any]`: Detects active debugging attempts via ptrace, debugger signals, and process anomalies.
 
-- `sanitizeJson(data: unknown, allowedTypes: string[], maxStringLength = 10000): SanitizedData`: Sanitiza dados JSON.
+- `anti_tampering(binary_hash: Optional[str], expected_hash: Optional[str], integrity_checks: Optional[list[str]]) -> dict[str, Any]`: Verifies binary integrity by comparing expected hashes against current hashes.
 
-- `detectApiAbuse(requests: Array<{...}>, patterns: RequestPattern[], window: number): AbuseDetectionResult`: Detecta abuso de API.
+- `memory_integrity_check(memory_regions: Optional[list[dict[str, Any]]], expected_state: Optional[dict[str, Any]], signatures: Optional[list[str]]) -> dict[str, Any]`: Verifies memory region integrity against expected state and known signatures.
 
-- `detectBola(resourceId: string, userId: string, ownershipMap: Record<string, string>): boolean`: Detecta BOLA/IDOR.
+- `process_integrity_check(process_id: Optional[int], expected_modules: Optional[list[str]], allowed_parents: Optional[list[str]]) -> dict[str, Any]`: Verifies process integrity including loaded modules and parent process chain.
 
-- `detectBrokenAuth(authHeader: string, requiredScopes: string[], token?: Record<string, unknown>): AuthValidationResult`: Detecta broken authentication.
+- `code_signing_validation(binary_path: Optional[str], certificate_store: Optional[dict[str, Any]], revocation_check: bool) -> dict[str, Any]`: Validates binary code signing certificate against trusted store and revocation list.
 
-- `detectMassAssignment(inputData: Record<string, unknown>, modelFields: string[], readonlyFields: string[]): MassAssignmentResult`: Detecta mass assignment.
+- `binary_integrity_validation(binary_path: Optional[str], expected_hashes: Optional[dict[str, str]], sections: Optional[list[str]]) -> dict[str, Any]`: Validates binary integrity by section-level hash verification (.text, .data, .rsrc, etc.).
 
-- `detectShadowApi(endpoint: string, documentedApis: string[], trafficPatterns: TrafficPattern[]): ShadowApiResult`: Detecta shadow APIs.
+- `secure_boot_validation(boot_chain: Optional[list[dict[str, Any]]], measurements: Optional[dict[str, str]], pcr_values: Optional[dict[int, str]]) -> dict[str, Any]`: Validates secure boot chain and TPM PCR measurements.
 
-- `apiThreatScore(request: {...}, context: ApiThreatContext, threatIntel: ThreatIntelEntry[]): number`: Calcula threat score de request API.
+- `secure_update_validation(update_package: Optional[dict[str, Any]], signature: Optional[str], version: Optional[str], channel: str) -> dict[str, Any]`: Validates update package authenticity, integrity, version, and channel.
 
-- `graphqlDepthLimit(query: string, maxDepth = 10, introspectionEnabled = false): GraphqlValidationResult`: Valida profundidade de query GraphQL.
+- `anti_hook_detection(functions: Optional[list[dict[str, Any]]], memory_regions: Optional[list[dict[str, Any]]], known_hooks: Optional[list[str]]) -> dict[str, Any]`: Detects function hooks and inline modifications in memory (IAT hooking, inline hooking).
 
-- `graphqlCostAnalysis(query: string, complexityMap: Record<string, number>, maxCost = 1000): GraphqlCostResult`: Analisa custo de query GraphQL.
+- `anti_injection_detection(process_modules: Optional[list[str]], loaded_libraries: Optional[list[str]], injection_signatures: Optional[list[str]]) -> dict[str, Any]`: Detects code injection in process memory space (DLL injection, process hollowing).
 
-- `graphqlAbuseDetection(queries: Array<{...}>, window: number, thresholds: {...}): GraphqlAbuseResult`: Detecta abuso GraphQL.
+- `anti_rootkit_detection(system_calls: Optional[list[dict[str, Any]]], kernel_modules: Optional[list[str]], hidden_processes: Optional[list[int]]) -> dict[str, Any]`: Detects rootkit indicators in syscalls, kernel modules, and hidden processes.
 
-- `grpcSecurityValidation(metadata: Record<string, string | string[]>, requiredHeaders: string[], tlsInfo: {...}): GrpcValidationResult`: Valida segurança gRPC.
+- `anti_vm_detection(hardware_info: Optional[dict[str, Any]], timing_checks: Optional[list[dict[str, Any]]], vm_artifacts: Optional[list[str]]) -> dict[str, Any]`: Detects virtual machine/sandbox execution via hardware info, timing checks, and VM artifacts.
 
-- `secureWebsocket(origin: string, allowedOrigins: string[], subprotocols?: string[]): WsSecurityResult`: Configura WebSocket seguro.
+- `anti_emulation_detection(environment_checks: Optional[list[dict[str, Any]]], timing: Optional[dict[str, Any]], api_availability: Optional[list[str]]) -> dict[str, Any]`: Detects emulation/sandbox analysis environments via environment checks and timing.
 
-- `apiKeyRotation(currentKey: string, algorithm = 'sha3-256', expiryDays = 90): KeyRotationResult`: Rotaciona API key.
+- `moving_target_runtime(services: Optional[list[dict[str, Any]]], rotation_config: Optional[dict[str, Any]], randomization: Optional[dict[str, Any]]) -> dict[str, Any]`: Implements moving target defense via service rotation and layout randomization.
 
-- `apiKeyValidation(apiKey: string, validKeys: Record<string, {...}>, scopes: string[], requiredScope?: string): KeyValidationResult`: Valida API key.
+- `dynamic_attack_surface(endpoints: Optional[list[dict[str, Any]]], exposure_config: Optional[dict[str, Any]], threat_level: str) -> dict[str, Any]`: Dynamically adjusts attack surface based on current threat level.
 
----
+- `runtime_policy_engine(policies: Optional[list[dict[str, Any]]], context: Optional[dict[str, Any]], enforcement_mode: str) -> dict[str, Any]`: Evaluates and enforces security policies at runtime with configurable enforcement mode.
 
-### TS: AI (14 funções)
+- `self_healing_security(state: Optional[dict[str, Any]], healing_rules: Optional[list[dict[str, Any]]], recovery_actions: Optional[list[str]]) -> dict[str, Any]`: Automatically detects and recovers from security incidents using healing rules.
 
-Proteção de IA: prompt leak detection, impersonation, model abuse, agent abuse, LLM firewall, policy engine, RAG validation, hallucination risk, output guard, tool call validation, multi-agent isolation, memory sanitization, token monitoring, behavior monitoring.
+- `adaptive_threat_response(threat: Optional[dict[str, Any]], response_playbook: Optional[dict[str, Any]], context: Optional[dict[str, Any]]) -> dict[str, Any]`: Executes adaptive threat response based on threat characteristics and playbook.
 
-#### Funções
-
-- `detectPromptLeak(prompt: string, systemPrompt: string, threshold: number = 0.4): DetectionResult`: Detecta tentativas de vazar system prompt.
-
-- `detectAiImpersonation(content: string, claimedIdentity: string, markers?: string[]): DetectionResult`: Detecta impersonação de IA.
-
-- `detectModelAbuse(requestPatterns: string[], rate: number, complexity: number): DetectionResult`: Detecta abuso de modelo.
-
-- `detectAgentAbuse(agentBehavior: AgentBehaviorAnalysis, policy: Record<string, unknown>, thresholds: Record<string, number>): DetectionResult`: Detecta abuso de agente.
-
-- `llmFirewall(inputData: string | Record<string, unknown>, rules: FirewallRule[], actionOnViolation: FirewallResult['action'] = 'block'): FirewallResult`: Firewall LLM com regras configuráveis.
-
-- `aiPolicyEngine(prompt: string, output: string = '', policies: AiPolicy[]): PolicyResult`: Engine de políticas de segurança IA.
-
-- `ragSourceValidation(sources: RagSource[], trustedDomains: string[], validationRules: ValidationRule[]): ValidationResult`: Valida fontes RAG.
-
-- `hallucinationRisk(output: string, confidenceScores: number[] = [], factualChecks: {...}[] = []): RiskResult`: Avalia risco de alucinação.
-
-- `aiOutputGuard(output: string, guardrails: Guardrail[], redactionRules: RedactionRule[]): string`: Aplica guardrails ao output.
-
-- `toolCallValidation(toolName: string, arguments_: Record<string, unknown>, allowedTools: AllowedTool[], argumentSchemas: Record<string, {...}>): ValidationResult`: Valida chamada de ferramenta.
-
-- `multiAgentIsolation(agents: AgentDefinition[], communicationRules: CommunicationRules): IsolationResult`: Valida isolamento multi-agente.
-
-- `aiMemorySanitizer(memoryEntries: MemoryEntry[], retentionPolicy: RetentionPolicy): MemoryEntry[]`: Sanitiza memória IA.
-
-- `aiTokenMonitor(usage: TokenUsage, limits: TokenLimits, window: number = 60): MonitorResult`: Monitora uso de tokens.
-
-- `aiBehaviorMonitor(behaviorLog: AgentBehaviorEntry[], baseline: BehaviorBaseline, deviationThreshold: number = 0.3): MonitorResult`: Monitora comportamento IA.
+- `autonomous_containment(threat: Optional[dict[str, Any]], containment_rules: Optional[list[dict[str, Any]]], network_topology: Optional[dict[str, Any]]) -> dict[str, Any]`: Autonomously contains active threats using containment rules and network topology.
 
 ---
 
-### TS: Network (15 funções)
+### Python: Honeypot (20 functions)
 
-Segurança de rede: port scan, DNS tunneling, traffic anomaly, proxy detection, DDoS, IP/domain validation, spoofing, ARP poisoning, TLS fingerprinting, beaconing, lateral movement, network entropy, traffic behavior, protocol anomaly.
+Honeypots and deception: adaptive honeypot, fake admin panel, fake database, fake API, fake filesystem, fake SSH, fake RDP, fake Kubernetes, fake S3, fake secrets, deceptive routes, attacker behavior tracking, adaptive deception, moving target defense, honeytoken generation, honeycredential detection, decoy endpoints, deceptive responses, fake login page, fake debug panel.
 
-#### Funções
+#### Functions
 
-- `detectPortScan(sourceIp: string, connections: ConnectionRecord[], window: number = 60, threshold: number = 20): DetectionResult`: Detecta port scanning.
+- `adaptive_honeypot(config: dict[str, Any], traffic_analysis: dict[str, Any], threat_level: str) -> dict[str, Any]`: Dynamically adjusts honeypot configuration based on observed traffic and threat level.
 
-- `detectDnsTunneling(dnsQueries: DnsQuery[], domain: string, threshold: number = 50): DetectionResult`: Detecta DNS tunneling.
+- `fake_admin_panel(template: str, routes: list[str] | None, responses: dict[str, Any] | None) -> dict[str, Any]`: Deploys a realistic fake admin panel to attract and track unauthorized access attempts.
 
-- `detectTrafficAnomaly(trafficData: TrafficData, baseline: Record<string, number>, deviationThreshold: number = 2.0): DetectionResult`: Detecta anomalias de tráfego.
+- `fake_database(schema: dict[str, Any] | None, records: dict[str, list[dict[str, Any]]] | None, connection_string: str) -> dict[str, Any]`: Creates a convincing fake database with realistic schema and sample records.
 
-- `detectProxy(ip: string, headers: Record<string, string>, detectionMethods: string[] = ['header', 'behavior', 'database']): DetectionResult`: Detecta proxy.
+- `fake_api(endpoints: list[str] | None, responses: dict[str, Any] | None, rate_limit: int) -> dict[str, Any]`: Deploys a fake REST API with realistic endpoints and response payloads.
 
-- `detectDdos(trafficData: TrafficData, baseline: Record<string, number>, threshold: number = 5.0, window: number = 60): DetectionResult`: Detecta ataques DDoS.
+- `fake_filesystem(structure: dict[str, Any] | None, files: dict[str, str] | None, permissions: dict[str, str] | None) -> dict[str, Any]`: Creates a realistic fake filesystem with plausible directory structures and files.
 
-- `validateIp(ip: string, allowedRanges: string[] = [], blockedRanges: string[] = []): IpValidationResult`: Valida endereço IP.
+- `fake_ssh_service(banner: str, host_key: str | None, port: int) -> dict[str, Any]`: Deploys a fake SSH service that accepts connections and logs all interaction attempts.
 
-- `validateDomain(domain: string, allowedTlds: string[] = [], blockedDomains: string[] = []): DomainValidationResult`: Valida domínio.
+- `fake_rdp_service(banner: str, port: int, authentication: str) -> dict[str, Any]`: Deploys a fake RDP service to detect and track remote desktop attacks.
 
-- `detectSpoofing(packetData: PacketData, expectedSource: string, networkTopology: NetworkTopology): DetectionResult`: Detecta IP spoofing.
+- `fake_kubernetes_cluster(api_server: str, nodes: list[dict[str, Any]] | None, namespaces: list[str] | None) -> dict[str, Any]`: Deploys a fake Kubernetes cluster API to attract container-focused attackers.
 
-- `detectArpPoisoning(arpTable: ArpEntry[], expectedMappings: Record<string, string> = {}): DetectionResult`: Detecta ARP poisoning.
+- `fake_s3_bucket(bucket_name: str, objects: list[dict[str, Any]] | None, permissions: dict[str, str] | None) -> dict[str, Any]`: Creates a fake S3 bucket with realistic objects and access policies.
 
-- `tlsFingerprint(tlsHandshake: TlsHandshake, ja3Database: Record<string, string> = {}): FingerprintResult`: Gera/compara TLS fingerprint.
+- `fake_secrets(secrets_list: list[dict[str, Any]] | None, rotation_policy: dict[str, Any] | None) -> dict[str, Any]`: Generates and manages fake secrets to detect credential harvesting attempts.
 
-- `ja3Fingerprint(tlsClientHello: TlsClientHello): string`: Gera fingerprint JA3.
+- `deceptive_routes(route_patterns: list[str] | None, handlers: dict[str, Any] | None, detection_callback: str | None) -> dict[str, Any]`: Registers deceptive routes that appear legitimate but trigger alerts when accessed.
 
-- `beaconingDetection(connections: ConnectionRecord[], intervalThreshold: number = 0.8, jitterThreshold: number = 0.15): DetectionResult`: Detecta beaconing (C2).
+- `attacker_behavior_tracking(session_id: str, actions: list[dict[str, Any]], timeline: list[dict[str, Any]] | None) -> dict[str, Any]`: Tracks and analyzes attacker behavior patterns within a honeypot session.
 
-- `lateralMovementDetection(events: SecurityEventRecord[], networkTopology: NetworkTopology, userBehavior: UserBehavior): DetectionResult`: Detecta movimento lateral.
+- `adaptive_deception(current_deception: dict[str, Any], attacker_profile: dict[str, Any], effectiveness: dict[str, float]) -> dict[str, Any]`: Dynamically adjusts deception tactics based on attacker profile and effectiveness metrics.
 
-- `networkEntropyAnalysis(packets: PacketData[], blockSize: number = 256, threshold: number = 7.5): EntropyResult`: Analisa entropia de rede.
+- `moving_target_defense(services: list[dict[str, Any]], rotation_interval: int, randomization: dict[str, Any] | None) -> dict[str, Any]`: Implements moving target defense by rotating service configurations.
 
-- `trafficBehaviorAnalysis(trafficData: TrafficData, baseline: Record<string, number>, timeWindow: number = 3600): BehaviorResult`: Analisa comportamento de tráfego.
+- `honeytoken_generation(token_type: str, metadata: dict[str, Any] | None, tracking: dict[str, Any] | None) -> dict[str, Any]`: Generates trackable honeytokens that alert when used outside authorized contexts.
 
-- `protocolAnomalyDetection(protocolData: Record<string, unknown>, protocolSpec: Record<string, unknown>, deviationThreshold: number = 0.3): DetectionResult`: Detecta anomalias de protocolo.
+- `honeycredential_detection(credentials: list[dict[str, Any]], honeytoken_db: dict[str, Any]) -> dict[str, Any]`: Checks submitted credentials against known honeytoken database.
 
----
+- `decoy_endpoints(base_path: str, count: int, patterns: list[str] | None) -> list[dict[str, Any]]`: Generates a list of decoy API endpoints that mimic real service endpoints.
 
-### TS: Cloud (20 funções)
+- `deceptive_responses(request: dict[str, Any], deception_config: dict[str, Any] | None, attacker_profile: dict[str, Any] | None) -> dict[str, Any]`: Generates contextually appropriate deceptive responses based on request and attacker profile.
 
-Segurança cloud: Dockerfile validation, container escape, K8s RBAC, S3 public bucket, IAM policies, cloud misconfig, secrets manager, Terraform, K8s manifests, runtime container protection, supply chain, SBOM, dependency audit, typosquatting, container image scan, K8s anomaly, security score, workload identity, confidential computing.
+- `fake_login_page(template: str, branding: dict[str, Any] | None, tracking_script: str | None) -> dict[str, Any]`: Deploys a convincing fake login page to capture credential submission attempts.
 
-#### Funções
-
-- `validateDockerfile(dockerfileContent: string, rules: Rule[], severityThreshold: SeverityLevel = 'medium'): ValidationResult`: Valida Dockerfile contra regras de segurança.
-
-- `detectContainerEscape(containerConfig: ContainerConfig, capabilities: string[] = [], namespaces: string[] = []): DetectionResult`: Detecta vetores de container escape.
-
-- `validateK8sRbac(rbacConfig: Record<string, unknown>, leastPrivilegeRules: Rule[]): ValidationResult`: Valida RBAC do Kubernetes.
-
-- `detectPublicBucket(bucketConfig: BucketConfig, policies: Record<string, unknown>[], acl: Record<string, unknown>): DetectionResult`: Detecta bucket público.
-
-- `validateS3Permissions(bucketPolicy: Record<string, unknown>, expectedPermissions: Record<string, string[]>): ValidationResult`: Valida permissões S3.
-
-- `validateIamPolicy(iamPolicy: IamPolicy, allowedActions: string[], deniedActions: string[]): ValidationResult`: Valida política IAM.
-
-- `detectCloudMisconfig(config: Record<string, unknown>, securityBaseline: Record<string, unknown>, cloudProvider: string): DetectionResult`: Detecta misconfig cloud.
-
-- `validateSecretsManager(secretsConfig: SecretConfig, rotationPolicy: {...}, encryption: {...}): ValidationResult`: Valida secrets manager.
-
-- `validateTerraform(terraformPlan: TerraformPlan, policies: Rule[], severityThreshold: SeverityLevel = 'medium'): ValidationResult`: Valida plano Terraform.
-
-- `validateKubernetesManifest(manifest: K8sManifest, podSecurityPolicy: Record<string, unknown>, networkPolicy: Record<string, unknown>): ValidationResult`: Valida manifest K8s.
-
-- `runtimeContainerProtection(containerEvents: Record<string, unknown>[], threatRules: Rule[], actions: Record<string, 'block' | 'alert' | 'isolate' | 'terminate' | 'log'>): ProtectionResult`: Protege containers em runtime.
-
-- `supplyChainValidation(dependencies: DependencyEntry[], trustedSources: string[], vulnerabilityDb: VulnerabilityEntry[]): ValidationResult`: Valida supply chain.
-
-- `sbomGenerator(components: Array<{...}>, format: 'spdx' | 'cyclonedx' | 'custom' = 'spdx', metadata: Record<string, unknown> = {}): SbomResult`: Gera SBOM.
-
-- `dependencyAudit(dependencies: DependencyEntry[], auditDb: VulnerabilityEntry[], severityThreshold: SeverityLevel = 'medium'): AuditResult`: Audita dependências.
-
-- `detectTyposquatting(packageName: string, knownPackages: string[], similarityThreshold: number = 0.85): DetectionResult`: Detecta typosquatting.
-
-- `containerImageScan(imageLayers: Array<{...}>, signatures: Array<{...}>, vulnerabilityDb: VulnerabilityEntry[]): ScanResult`: Escaneia imagem de container.
-
-- `runtimeK8sAnomaly(k8sEvents: Record<string, unknown>[], baseline: Record<string, number>, anomalyThreshold: number = 2.0): AnomalyResult`: Detecta anomalia K8s runtime.
-
-- `cloudSecurityScore(config: Record<string, unknown>, benchmarks: Record<string, Record<string, unknown>>, weights: Record<string, number>): ScoreResult`: Calcula security score cloud.
-
-- `workloadIdentityValidation(workloadConfig: WorkloadConfig, identityProvider: string, trustPolicy: Record<string, unknown>): ValidationResult`: Valida workload identity.
-
-- `confidentialComputingValidation(attestation: Attestation, teeType: 'sgx' | 'tdx' | 'sev' | 'snp' | 'nitro' | 'cvm', expectedMeasurements: Record<string, string>): ValidationResult`: Valida confidential computing.
+- `fake_debug_panel(config: dict[str, Any] | None, endpoints: list[str] | None, data: dict[str, Any] | None) -> dict[str, Any]`: Deploys a fake debug/development panel that appears to expose internal system information.
 
 ---
 
-### TS: Monitoring (12 funções)
+### Python: File (21 functions)
 
-Monitoramento: anomaly score, threat score, risk score, event correlation, adaptive alerting, attack path analysis, threat graph, behavioral analysis, UEBA, account takeover detection, incident timeline, MITRE ATT&CK mapping.
+File security: secure upload, extension/MIME validation, polyglot file detection, zip bomb, office macros, PDF JavaScript, malware scan, YARA rules, heuristic scan, quarantine, filename sanitization, executable payloads, entropy analysis, sandbox execution, embedded scripts, steganography, obfuscation detection, secure temp files, immutable storage.
 
-#### Funções
+#### Functions
 
-- `anomalyScore(metrics: MetricsData, baseline: BaselineData, weights: Record<string, number> = {}): number`: Calcula anomaly score via z-score.
+- `secure_upload(file_data: bytes, filename: str, allowed_extensions: Optional[list[str]], max_size: int) -> dict[str, Any]`: Securely validates and processes an uploaded file by checking extension, MIME, size, and content.
 
-- `threatScore(events: SecurityEvent[], threatIntel: ThreatIntel, context: Record<string, unknown> = {}): number`: Calcula threat score.
+- `validate_extension(filename: str, allowed_extensions: list[str]) -> bool`: Validates that a filename has an allowed extension from the allowlist.
 
-- `riskScore(userId: string, events: SecurityEvent[], context: Record<string, unknown> = {}, historical: {...}): number`: Calcula risk score de usuário.
+- `validate_mime(file_data: bytes, expected_mime: Optional[str], magic_bytes: Optional[dict[str, bytes]]) -> dict[str, Any]`: Validates MIME type using magic byte detection, preventing extension spoofing.
 
-- `correlateEvents(events: SecurityEvent[], timeWindow: number = 300000, correlationRules: CorrelationRule[] = []): CorrelatedEvent[]`: Correlaciona eventos.
+- `detect_polyglot_file(file_data: bytes, signatures: Optional[list[dict[str, Any]]]) -> dict[str, Any]`: Detects if a file contains multiple file format signatures (polyglot file attack).
 
-- `adaptiveAlerting(events: SecurityEvent[], baseline: {...}, alertFatigueThreshold: number = 10): AlertResult`: Alerting adaptativo com fatigue prevention.
+- `detect_zip_bomb(file_data: bytes, max_ratio: float, max_uncompressed: int) -> dict[str, Any]`: Detects potential zip bomb by analyzing compression ratios and uncompressed size.
 
-- `attackPathAnalysis(events: SecurityEvent[], networkTopology: {...}, attackGraph: {...}): PathResult`: Analisa caminhos de ataque.
+- `detect_office_macro(file_data: bytes, file_type: Optional[str]) -> dict[str, Any]`: Detects VBA macros in Office documents (Word, Excel, PowerPoint) that can execute malicious code.
 
-- `threatGraph(events: SecurityEvent[], entities: {...}[], relationships: {...}[]): GraphResult`: Constrói grafo de ameaça.
+- `detect_pdf_javascript(file_data: bytes) -> dict[str, Any]`: Detects JavaScript embedded in PDF files that can execute malicious actions.
 
-- `behavioralAnalysis(userEvents: SecurityEvent[], baseline: {...}, deviationThreshold: number = 2.0): AnalysisResult`: Analisa comportamento de usuário.
+- `malware_scan(file_data: bytes, signatures: Optional[list[dict[str, Any]]], yara_rules: Optional[list[dict[str, Any]]]) -> dict[str, Any]`: Scans file data for malware using signature matching and YARA rules.
 
-- `uebaAnalysis(userEvents: SecurityEvent[], peerGroup: {...}, anomalyThreshold: number = 2.5): UebaResult`: UEBA contra peer groups.
+- `yara_scan(file_data: bytes, rules: Optional[list[dict[str, Any]]], namespace: Optional[str]) -> dict[str, Any]`: Scans file data using YARA-like pattern matching rules with optional namespace.
 
-- `detectAccountTakeover(userEvents: SecurityEvent[], baseline: {...}, riskFactors: {...}): DetectionResult`: Detecta account takeover.
+- `heuristic_scan(file_data: bytes, heuristics: Optional[list[dict[str, Any]]], threshold: float) -> dict[str, Any]`: Performs heuristic analysis to detect suspicious behavior in files.
 
-- `incidentTimeline(events: SecurityEvent[], incidentId: string, classification: string = 'unclassified'): TimelineResult`: Constrói timeline de incidente.
+- `quarantine_file(filepath: str, quarantine_dir: Optional[str], reason: str) -> str`: Moves a file to a quarantine directory with metadata tracking.
 
-- `attackChainMapping(events: SecurityEvent[], mitreFramework: {...}, killChain: {...}): ChainResult`: Mapeia para MITRE ATT&CK e Kill Chain.
+- `sanitize_filename(filename: str, max_length: int, allowed_chars: Optional[str]) -> str`: Sanitizes a filename by removing dangerous characters and path traversal sequences.
+
+- `detect_executable_payload(file_data: bytes, file_type: Optional[str]) -> dict[str, Any]`: Detects executable payloads embedded within non-executable files.
+
+- `entropy_analysis(file_data: bytes, block_size: int, threshold: float) -> dict[str, Any]`: Calculates Shannon entropy of file data to detect encryption or compression.
+
+- `sandbox_execute(file_path: str, sandbox_config: Optional[dict[str, Any]], timeout: int) -> dict[str, Any]`: Executes a file in a sandboxed environment for behavioral analysis.
+
+- `detect_embedded_script(file_data: bytes, file_type: Optional[str], script_types: Optional[list[str]]) -> dict[str, Any]`: Detects embedded scripts within files (JavaScript in PDF, macros in Office, etc.).
+
+- `detect_steganography(file_data: bytes, analysis_methods: Optional[list[str]]) -> dict[str, Any]`: Detects potential steganography in image files using LSB, appended data, entropy, histogram analysis.
+
+- `detect_obfuscation(file_data: bytes, detection_methods: Optional[list[str]]) -> dict[str, Any]`: Detects obfuscated content in files (base64, hex, string concatenation, control flow).
+
+- `secure_tempfile(prefix: str, suffix: str, directory: Optional[str], delete_on_close: bool) -> str`: Creates a secure temporary file with restricted permissions and optional auto-deletion.
+
+- `immutable_storage_check(filepath: str, expected_hash: Optional[str], storage_type: str) -> bool`: Verifies file integrity against expected hash for immutable storage.
 
 ---
 
-### TS: Defensive (20 funções)
+### Python: Enterprise (10 functions)
 
-Defesa ativa: runtime self-protection, anti-debugging, anti-tampering, memory integrity, process integrity, code signing, binary integrity, secure boot, secure update, anti-hook, anti-injection, anti-rootkit, anti-VM, anti-emulation, moving target, dynamic attack surface, runtime policy engine, self-healing, adaptive threat response, autonomous containment.
+Enterprise compliance: LGPD (Brazil), GDPR (EU), HIPAA (healthcare), PCI-DSS (payments), compliance reports, audit trails, policy as code, real-time security dashboard, tenant isolation, multi-region security.
 
-#### Funções
+#### Functions
 
-- `runtimeSelfProtection(config: ProtectionConfig, integrityChecks: IntegrityCheckConfig[], monitoring: MonitoringConfig): ProtectionResult`: Auto-proteção runtime com integrity checks.
+- `lgpd_check(system_config: dict[str, Any], data_flows: list[dict[str, Any]], controls: dict[str, Any]) -> dict[str, Any]`: Checks compliance with Brazilian LGPD (Lei Geral de Protecao de Dados): consent, DPO, data subject rights, etc.
 
-- `antiDebuggingDetection(processInfo: ProcessInfo, ptraceStatus: PtraceStatus, debuggerSignals: DebuggerSignal[]): DetectionResult`: Detecta debugging ativo.
+- `gdpr_check(system_config: dict[str, Any], data_processing: list[dict[str, Any]], controls: dict[str, Any]) -> dict[str, Any]`: Checks compliance with EU GDPR: lawful basis, DPO, data minimization, right to be forgotten, etc.
 
-- `antiTampering(binaryHash: BinaryHash[], expectedHash: Record<string, string>, integrityChecks: IntegrityCheckConfig[]): DetectionResult`: Detecta tampering de binário.
+- `hipaa_check(system_config: dict[str, Any], phi_handling: list[dict[str, Any]], controls: dict[str, Any]) -> dict[str, Any]`: Checks compliance with HIPAA (healthcare): PHI encryption, access controls, audit controls, etc.
 
-- `memoryIntegrityCheck(memoryRegions: MemoryRegion[], expectedState: MemoryExpectedState[], signatures: MemorySignature[]): IntegrityResult`: Verifica integridade de memória.
+- `pci_check(system_config: dict[str, Any], card_data_handling: list[dict[str, Any]], controls: dict[str, Any]) -> dict[str, Any]`: Checks compliance with PCI-DSS (payments): card data encryption, network segmentation, access control, etc.
 
-- `processIntegrityCheck(processId: number, expectedModules: string[], allowedParents: number[]): IntegrityResult`: Verifica integridade de processo.
+- `compliance_report(checks: list[dict[str, Any]], framework: str, scope: dict[str, Any]) -> dict[str, Any]`: Generates a comprehensive compliance report from multiple check results.
 
-- `codeSigningValidation(binaryPath: string, certificateStore: CertificateStore, revocationCheck: boolean): ValidationResult`: Valida code signing.
+- `audit_trail(events: list[dict[str, Any]], user_actions: list[dict[str, Any]], data_changes: list[dict[str, Any]]) -> dict[str, Any]`: Generates an immutable audit trail from security events, user actions, and data changes.
 
-- `binaryIntegrityValidation(binaryPath: string, expectedHashes: Record<string, string>, sections: string[]): ValidationResult`: Valida integridade de binário por seção.
+- `policy_as_code(policies: list[dict[str, Any]], context: dict[str, Any], enforcement: dict[str, Any]) -> dict[str, Any]`: Evaluates and enforces security policies defined as code (IaC for security policies).
 
-- `secureBootValidation(bootChain: BootMeasurement[], measurements: BootMeasurement[], pcrValues: PcrValue[]): ValidationResult`: Valida secure boot chain.
+- `realtime_security_dashboard(metrics: dict[str, Any], alerts: list[dict[str, Any]], trends: dict[str, Any]) -> dict[str, Any]`: Generates a real-time security dashboard from metrics, alerts, and trends.
 
-- `secureUpdateValidation(updatePackage: UpdatePackage, signature: UpdateSignature, version: string, channel: string): ValidationResult`: Valida update package.
+- `tenant_isolation(tenant_config: dict[str, Any], network_policies: list[dict[str, Any]], data_segregation: dict[str, Any]) -> dict[str, Any]`: Verifies and enforces tenant isolation in a multi-tenant environment.
 
-- `antiHookDetection(functions: HookInfo[], memoryRegions: MemoryRegion[], knownHooks: string[]): DetectionResult`: Detecta function hooks.
+- `multi_region_security(regions: list[dict[str, Any]], data_residency_rules: dict[str, Any], encryption: dict[str, Any]) -> dict[str, Any]`: Evaluates multi-region security posture and data residency compliance.
 
-- `antiInjectionDetection(processModules: ProcessModule[], loadedLibraries: string[], injectionSignatures: InjectionSignature[]): DetectionResult`: Detecta code injection.
+---
 
-- `antiRootkitDetection(systemCalls: SystemCallInfo[], kernelModules: KernelModule[], hiddenProcesses: ProcessEntry[]): DetectionResult`: Detecta rootkit activity.
+### Python: Integrations (10 functions)
 
-- `antiVmDetection(hardwareInfo: HardwareInfo, timingChecks: TimingCheck, vmArtifacts: VmArtifact[]): DetectionResult`: Detecta ambiente VM.
+Framework integrations: FastAPI, Django, Flask, Celery, SQLAlchemy, async threat pipeline, YARA real-time engine, AI threat classifier, secure CLI runtime, Python runtime guard.
 
-- `antiEmulationDetection(environmentChecks: EnvironmentCheck[], timing: TimingCheck, apiAvailability: ApiAvailability[]): DetectionResult`: Detecta emulação/sandbox.
+#### Functions
+
+- `fastapi_security_dependency(config: dict[str, Any], security_schemes: dict[str, Any], middleware_config: dict[str, Any]) -> dict[str, Any]`: Creates FastAPI security dependency with OAuth2, JWT validation, and rate limiting.
+
+- `django_security_middleware(config: dict[str, Any], settings: dict[str, Any], middleware_config: dict[str, Any]) -> dict[str, Any]`: Creates Django security middleware with CSP, CSRF, and security headers.
+
+- `flask_security_extension(app: Any, config: dict[str, Any], security_config: dict[str, Any]) -> dict[str, Any]`: Creates Flask security extension with security wrappers and request protection.
+
+- `celery_security_monitor(app: Any, config: dict[str, Any], task_security: dict[str, Any]) -> dict[str, Any]`: Creates Celery task security monitoring with validation and audit logging.
+
+- `sqlalchemy_query_protection(query: Any, user_permissions: dict[str, Any], row_level_security: dict[str, Any]) -> dict[str, Any]`: Applies SQLAlchemy query protection with row-level security and permission filtering.
+
+- `async_threat_pipeline(config: dict[str, Any], processors: list[dict[str, Any]], output_channels: list[dict[str, Any]]) -> dict[str, Any]`: Creates async threat detection pipeline with configurable processors and output channels.
+
+- `yara_realtime_engine(rules: list[dict[str, Any]], watch_dirs: list[str], scan_interval: int) -> dict[str, Any]`: Creates YARA real-time scanning engine with file watch and rule matching.
+
+- `ai_threat_classifier(model_path: str, classification_rules: dict[str, Any], confidence_threshold: float) -> dict[str, Any]`: Creates AI-powered threat classifier with model loading and confidence-based decisions.
+
+- `secure_cli_runtime(config: dict[str, Any], input_sanitization: dict[str, Any], timeout_config: dict[str, Any]) -> dict[str, Any]`: Creates secure CLI runtime with input sanitization and execution timeouts.
+
+- `python_runtime_guard(config: dict[str, Any], import_whitelist: list[str], sandbox_config: dict[str, Any]) -> dict[str, Any]`: Creates Python runtime guard with import whitelisting and sandboxing.
+
+---
+
+## TypeScript Modules
+
+### TS: Core (11 functions)
+
+Base infrastructure: configuration, structured logging with pino, metrics, LRU cache, policy engine, event bus, OpenTelemetry, security exceptions, and tracing spans.
+
+#### Functions
+
+- `getConfig(): MSFConfig`: Gets the global framework configuration. Creates default instance if none exists.
+
+- `setConfig(config: MSFConfig): void`: Sets the global framework configuration.
+
+- `reloadConfig(): MSFConfig`: Reloads configuration from environment variables.
+
+- `getLogger(component: string, options?: MSFLoggerOptions): MSFLogger`: Gets structured pino logger for a component.
+
+- `getMetrics(): MetricsRegistry`: Gets the global metrics registry with counters, gauges, histograms.
+
+- `getPolicyEngine(): PolicyEngine`: Gets the security policy engine singleton.
+
+- `getEventBus(maxHistory?: number, maxDeadLetter?: number): EventBus`: Gets the event bus with history and dead letter queue.
+
+- `getCache(options?: Partial<CacheOptions>): CacheManager`: Gets LRU cache manager with TTL and invalidation.
+
+- `getTelemetry(serviceName?: string, serviceVersion?: string, enabled?: boolean): TelemetryManager`: Gets the OpenTelemetry manager.
+
+- `createSpan(name: string, attributes: Record<string, string | number | boolean>): otel.Span`: Creates an OpenTelemetry tracing span with attributes.
+
+- `redactPII(value: string): string`: Redacts PII (Personally Identifiable Information) from a string.
+
+---
+
+### TS: Auth (7 functions)
+
+Authentication: TOTP, backup codes, password entropy, device/browser fingerprinting, phishing-resistant auth.
+
+#### Functions
+
+- `generateTotp(secret: string, digits: number = 6, period: number = 30, timeStep?: number): string`: Generates TOTP code with configurable digits and period.
+
+- `validateTotp(secret: string, token: string, digits: number = 6, period: number = 30, drift: number = 1): boolean`: Validates TOTP token with drift tolerance.
+
+- `verifyBackupCode(code: string, validCodes: string[]): boolean`: Verifies and consumes a backup code.
+
+- `passwordEntropy(password: string): number`: Calculates Shannon entropy of a password.
+
+- `deviceFingerprint(userAgent: string, screen: string, timezone: string, languages: string[], platform: string): string`: Generates device fingerprint.
+
+- `browserFingerprint(canvasHash: string, webglHash: string, audioHash: string, fonts: string[]): string`: Generates browser fingerprint.
+
+- `phishingResistantAuth(authMethod: string, fidoLevel: number, attestation: string): boolean`: Verifies if auth method is phishing-resistant.
+
+---
+
+### TS: Crypto (5 functions)
+
+Cryptography: secure random, HMAC, memory-safe erase, timing-safe compare.
+
+#### Functions
+
+- `secureRandom(nbytes: number): Uint8Array`: Generates cryptographically secure random bytes using `crypto.getRandomValues()`.
+
+- `generateHmac(data: Uint8Array | string, key: Uint8Array | string, algorithm: HmacAlgorithm = 'hmac-sha256'): string`: Generates HMAC for integrity authentication.
+
+- `verifyHmac(data: Uint8Array | string, signature: string, key: Uint8Array | string, algorithm: HmacAlgorithm = 'hmac-sha256'): boolean`: Verifies HMAC by comparing signature.
+
+- `secureMemoryErase(data: Uint8Array): void`: Securely erases data from memory by overwriting.
+
+- `antiTimingCompare(a: Uint8Array, b: Uint8Array): boolean`: Compares in constant time to prevent timing attacks.
+
+---
+
+### TS: Web (35 functions)
+
+Web attack detection and sanitization: XSS, SQLi, NoSQLi, SSRF, RCE, LFI, RFI, SSTI, Command Injection, Deserialization, Path Traversal, Open Redirect, CORS, CSP, CSRF, secure cookies, clickjacking, webhooks.
+
+#### Functions
+
+- `detectXss(input: string, patterns?: RegExp[], severityThreshold: number = 0.3): DetectionResult`: Detects XSS patterns including script tags, event handlers, javascript: URIs.
+
+- `sanitizeHtml(html: string, allowedTags: string[], allowedAttrs: string[]): string`: Sanitizes HTML by removing disallowed tags and attributes.
+
+- `sanitizeSvg(svg: string, allowedElements: string[]): string`: Sanitizes SVG by removing dangerous elements.
+
+- `sanitizeMarkdown(markdown: string, allowedHtml: string[]): string`: Sanitizes markdown by removing dangerous embedded HTML.
+
+- `sanitizeCss(css: string, allowedProperties: string[]): string`: Sanitizes CSS by removing dangerous properties.
+
+- `sanitizeJs(jsCode: string, dangerousPatterns: RegExp[]): string`: Sanitizes JavaScript by removing `eval()`, `Function()`, `document.write()`, etc.
+
+- `detectSqli(input: string, patterns?: RegExp[], context?: string): DetectionResult`: Detects SQL injection (UNION, blind, time-based, error-based).
+
+- `detectNosqli(input: string, patterns?: RegExp[]): DetectionResult`: Detects NoSQL injection in MongoDB/NoSQL queries.
+
+- `detectSsrf(url: string, allowedDomains: string[], blockedIps: string[]): DetectionResult`: Detects SSRF by verifying URLs against allowlist and blocklist.
+
+- `detectRce(input: string, patterns?: RegExp[]): DetectionResult`: Detects Remote Code Execution patterns.
+
+- `detectLfi(input: string, patterns?: RegExp[]): DetectionResult`: Detects Local File Inclusion via path traversal.
+
+- `detectRfi(input: string, patterns?: RegExp[]): DetectionResult`: Detects Remote File Inclusion via external URLs.
+
+- `detectTemplateInjection(input: string, engineType: 'jinja2' | 'ejs' | 'handlebars' | 'mustache' | 'pug' | 'twig' | 'generic'): DetectionResult`: Detects Server-Side Template Injection for multiple engines.
+
+- `detectCommandInjection(input: string, patterns?: RegExp[]): DetectionResult`: Detects OS Command Injection.
+
+- `detectDeserializationAttack(data: string, allowedClasses: string[]): DetectionResult`: Detects insecure deserialization.
+
+- `detectPathTraversal(input: string, basePath: string): DetectionResult`: Detects path traversal by verifying resolution within basePath.
+
+- `detectOpenRedirect(url: string, allowedHosts: string[]): DetectionResult`: Detects open redirect by verifying allowed hosts.
+
+- `validateCors(origin: string | undefined, allowedOrigins: string[], allowedMethods: string[], allowedHeaders: string[]): CorsResult`: Validates CORS request.
+
+- `secureHeaders(request: SecureHeadersRequest, config: SecureHeadersConfig): Record<string, string>`: Generates secure HTTP response headers.
+
+- `generateCsp(config: CspConfig): string`: Generates Content-Security-Policy header.
+
+- `validateCsp(cspHeader: string, policy: CspConfig): boolean`: Validates CSP header against policy.
+
+- `csrfProtect(request: CsrfRequest, token: string, sessionToken: string): boolean`: Protects against CSRF.
+
+- `validateCsrf(token: string, sessionToken: string): boolean`: Validates CSRF token.
+
+- `secureCookie(name: string, value: string, options: SecureCookieOptions): string`: Generates secure Set-Cookie header.
+
+- `detectClickjacking(headers: Record<string, string>, frameOptions: string): boolean`: Detects clickjacking vulnerability.
+
+- `validateOrigin(origin: string, allowedOrigins: string[]): boolean`: Validates Origin header.
+
+- `validateReferer(referer: string | undefined, expectedDomain: string): boolean`: Validates Referer header.
+
+- `secureRedirect(url: string, allowedHosts: string[]): string`: Validates safe redirect URL.
+
+- `webhookSignature(payload: string, secret: string, algorithm: 'sha256' | 'sha384' | 'sha512' | 'sha3-256', timestamp?: number): string`: Generates webhook signature.
+
+- `webhookReplayProtection(signature: string, timestamp: number, payload: string, secret: string, window: number): boolean`: Protects against webhook replay.
+
+---
+
+### TS: API (16 functions)
+
+API security: JSON Schema validation, input validation, sanitization, API abuse detection, BOLA, broken auth, mass assignment, shadow API, threat scoring, GraphQL (depth, cost, abuse), gRPC, WebSocket, API key rotation/validation.
+
+#### Functions
+
+- `validateJsonSchema(data: unknown, schema: Record<string, unknown>, strictMode = false): ValidationResult`: Validates data against JSON Schema.
+
+- `validateInput(data: unknown, rules: Record<string, {...}>, maxDepth = 5, maxSize = 1048576): ValidationResult`: Validates API input against rules.
+
+- `sanitizeJson(data: unknown, allowedTypes: string[], maxStringLength = 10000): SanitizedData`: Sanitizes JSON data.
+
+- `detectApiAbuse(requests: Array<{...}>, patterns: RequestPattern[], window: number): AbuseDetectionResult`: Detects API abuse.
+
+- `detectBola(resourceId: string, userId: string, ownershipMap: Record<string, string>): boolean`: Detects BOLA/IDOR.
+
+- `detectBrokenAuth(authHeader: string, requiredScopes: string[], token?: Record<string, unknown>): AuthValidationResult`: Detects broken authentication.
+
+- `detectMassAssignment(inputData: Record<string, unknown>, modelFields: string[], readonlyFields: string[]): MassAssignmentResult`: Detects mass assignment.
+
+- `detectShadowApi(endpoint: string, documentedApis: string[], trafficPatterns: TrafficPattern[]): ShadowApiResult`: Detects shadow APIs.
+
+- `apiThreatScore(request: {...}, context: ApiThreatContext, threatIntel: ThreatIntelEntry[]): number`: Calculates API request threat score.
+
+- `graphqlDepthLimit(query: string, maxDepth = 10, introspectionEnabled = false): GraphqlValidationResult`: Validates GraphQL query depth.
+
+- `graphqlCostAnalysis(query: string, complexityMap: Record<string, number>, maxCost = 1000): GraphqlCostResult`: Analyzes GraphQL query cost.
+
+- `graphqlAbuseDetection(queries: Array<{...}>, window: number, thresholds: {...}): GraphqlAbuseResult`: Detects GraphQL abuse.
+
+- `grpcSecurityValidation(metadata: Record<string, string | string[]>, requiredHeaders: string[], tlsInfo: {...}): GrpcValidationResult`: Validates gRPC security.
+
+- `secureWebsocket(origin: string, allowedOrigins: string[], subprotocols?: string[]): WsSecurityResult`: Configures secure WebSocket.
+
+- `apiKeyRotation(currentKey: string, algorithm = 'sha3-256', expiryDays = 90): KeyRotationResult`: Rotates API key.
+
+- `apiKeyValidation(apiKey: string, validKeys: Record<string, {...}>, scopes: string[], requiredScope?: string): KeyValidationResult`: Validates API key.
+
+---
+
+### TS: AI (14 functions)
+
+AI protection: prompt leak detection, impersonation, model abuse, agent abuse, LLM firewall, policy engine, RAG validation, hallucination risk, output guard, tool call validation, multi-agent isolation, memory sanitization, token monitoring, behavior monitoring.
+
+#### Functions
+
+- `detectPromptLeak(prompt: string, systemPrompt: string, threshold: number = 0.4): DetectionResult`: Detects system prompt leak attempts.
+
+- `detectAiImpersonation(content: string, claimedIdentity: string, markers?: string[]): DetectionResult`: Detects AI impersonation.
+
+- `detectModelAbuse(requestPatterns: string[], rate: number, complexity: number): DetectionResult`: Detects model abuse.
+
+- `detectAgentAbuse(agentBehavior: AgentBehaviorAnalysis, policy: Record<string, unknown>, thresholds: Record<string, number>): DetectionResult`: Detects agent abuse.
+
+- `llmFirewall(inputData: string | Record<string, unknown>, rules: FirewallRule[], actionOnViolation: FirewallResult['action'] = 'block'): FirewallResult`: LLM firewall with configurable rules.
+
+- `aiPolicyEngine(prompt: string, output: string = '', policies: AiPolicy[]): PolicyResult`: AI security policy engine.
+
+- `ragSourceValidation(sources: RagSource[], trustedDomains: string[], validationRules: ValidationRule[]): ValidationResult`: Validates RAG sources.
+
+- `hallucinationRisk(output: string, confidenceScores: number[] = [], factualChecks: {...}[] = []): RiskResult`: Assesses hallucination risk.
+
+- `aiOutputGuard(output: string, guardrails: Guardrail[], redactionRules: RedactionRule[]): string`: Applies guardrails to output.
+
+- `toolCallValidation(toolName: string, arguments_: Record<string, unknown>, allowedTools: AllowedTool[], argumentSchemas: Record<string, {...}>): ValidationResult`: Validates tool call.
+
+- `multiAgentIsolation(agents: AgentDefinition[], communicationRules: CommunicationRules): IsolationResult`: Validates multi-agent isolation.
+
+- `aiMemorySanitizer(memoryEntries: MemoryEntry[], retentionPolicy: RetentionPolicy): MemoryEntry[]`: Sanitizes AI memory.
+
+- `aiTokenMonitor(usage: TokenUsage, limits: TokenLimits, window: number = 60): MonitorResult`: Monitors token usage.
+
+- `aiBehaviorMonitor(behaviorLog: AgentBehaviorEntry[], baseline: BehaviorBaseline, deviationThreshold: number = 0.3): MonitorResult`: Monitors AI behavior.
+
+---
+
+### TS: Network (16 functions)
+
+Network security: port scan, DNS tunneling, traffic anomaly, proxy detection, DDoS, IP/domain validation, spoofing, ARP poisoning, TLS fingerprinting, beaconing, lateral movement, network entropy, traffic behavior, protocol anomaly.
+
+#### Functions
+
+- `detectPortScan(sourceIp: string, connections: ConnectionRecord[], window: number = 60, threshold: number = 20): DetectionResult`: Detects port scanning.
+
+- `detectDnsTunneling(dnsQueries: DnsQuery[], domain: string, threshold: number = 50): DetectionResult`: Detects DNS tunneling.
+
+- `detectTrafficAnomaly(trafficData: TrafficData, baseline: Record<string, number>, deviationThreshold: number = 2.0): DetectionResult`: Detects traffic anomalies.
+
+- `detectProxy(ip: string, headers: Record<string, string>, detectionMethods: string[] = ['header', 'behavior', 'database']): DetectionResult`: Detects proxy.
+
+- `detectDdos(trafficData: TrafficData, baseline: Record<string, number>, threshold: number = 5.0, window: number = 60): DetectionResult`: Detects DDoS attacks.
+
+- `validateIp(ip: string, allowedRanges: string[] = [], blockedRanges: string[] = []): IpValidationResult`: Validates IP address.
+
+- `validateDomain(domain: string, allowedTlds: string[] = [], blockedDomains: string[] = []): DomainValidationResult`: Validates domain.
+
+- `detectSpoofing(packetData: PacketData, expectedSource: string, networkTopology: NetworkTopology): DetectionResult`: Detects IP spoofing.
+
+- `detectArpPoisoning(arpTable: ArpEntry[], expectedMappings: Record<string, string> = {}): DetectionResult`: Detects ARP poisoning.
+
+- `tlsFingerprint(tlsHandshake: TlsHandshake, ja3Database: Record<string, string> = {}): FingerprintResult`: Generates/compares TLS fingerprint.
+
+- `ja3Fingerprint(tlsClientHello: TlsClientHello): string`: Generates JA3 fingerprint.
+
+- `beaconingDetection(connections: ConnectionRecord[], intervalThreshold: number = 0.8, jitterThreshold: number = 0.15): DetectionResult`: Detects beaconing (C2).
+
+- `lateralMovementDetection(events: SecurityEventRecord[], networkTopology: NetworkTopology, userBehavior: UserBehavior): DetectionResult`: Detects lateral movement.
+
+- `networkEntropyAnalysis(packets: PacketData[], blockSize: number = 256, threshold: number = 7.5): EntropyResult`: Analyzes network entropy.
+
+- `trafficBehaviorAnalysis(trafficData: TrafficData, baseline: Record<string, number>, timeWindow: number = 3600): BehaviorResult`: Analyzes traffic behavior.
+
+- `protocolAnomalyDetection(protocolData: Record<string, unknown>, protocolSpec: Record<string, unknown>, deviationThreshold: number = 0.3): DetectionResult`: Detects protocol anomalies.
+
+---
+
+### TS: Cloud (20 functions)
+
+Cloud security: Dockerfile validation, container escape, K8s RBAC, S3 public bucket, IAM policies, cloud misconfig, secrets manager, Terraform, K8s manifests, runtime container protection, supply chain, SBOM, dependency audit, typosquatting, container image scan, K8s anomaly, security score, workload identity, confidential computing.
+
+#### Functions
+
+- `validateDockerfile(dockerfileContent: string, rules: Rule[], severityThreshold: SeverityLevel = 'medium'): ValidationResult`: Validates Dockerfile against security rules.
+
+- `detectContainerEscape(containerConfig: ContainerConfig, capabilities: string[] = [], namespaces: string[] = []): DetectionResult`: Detects container escape vectors.
+
+- `validateK8sRbac(rbacConfig: Record<string, unknown>, leastPrivilegeRules: Rule[]): ValidationResult`: Validates Kubernetes RBAC.
+
+- `detectPublicBucket(bucketConfig: BucketConfig, policies: Record<string, unknown>[], acl: Record<string, unknown>): DetectionResult`: Detects public bucket.
+
+- `validateS3Permissions(bucketPolicy: Record<string, unknown>, expectedPermissions: Record<string, string[]>): ValidationResult`: Validates S3 permissions.
+
+- `validateIamPolicy(iamPolicy: IamPolicy, allowedActions: string[], deniedActions: string[]): ValidationResult`: Validates IAM policy.
+
+- `detectCloudMisconfig(config: Record<string, unknown>, securityBaseline: Record<string, unknown>, cloudProvider: string): DetectionResult`: Detects cloud misconfigurations.
+
+- `validateSecretsManager(secretsConfig: SecretConfig, rotationPolicy: {...}, encryption: {...}): ValidationResult`: Validates secrets manager.
+
+- `validateTerraform(terraformPlan: TerraformPlan, policies: Rule[], severityThreshold: SeverityLevel = 'medium'): ValidationResult`: Validates Terraform plan.
+
+- `validateKubernetesManifest(manifest: K8sManifest, podSecurityPolicy: Record<string, unknown>, networkPolicy: Record<string, unknown>): ValidationResult`: Validates K8s manifest.
+
+- `runtimeContainerProtection(containerEvents: Record<string, unknown>[], threatRules: Rule[], actions: Record<string, 'block' | 'alert' | 'isolate' | 'terminate' | 'log'>): ProtectionResult`: Protects containers at runtime.
+
+- `supplyChainValidation(dependencies: DependencyEntry[], trustedSources: string[], vulnerabilityDb: VulnerabilityEntry[]): ValidationResult`: Validates supply chain.
+
+- `sbomGenerator(components: Array<{...}>, format: 'spdx' | 'cyclonedx' | 'custom' = 'spdx', metadata: Record<string, unknown> = {}): SbomResult`: Generates SBOM.
+
+- `dependencyAudit(dependencies: DependencyEntry[], auditDb: VulnerabilityEntry[], severityThreshold: SeverityLevel = 'medium'): AuditResult`: Audits dependencies.
+
+- `detectTyposquatting(packageName: string, knownPackages: string[], similarityThreshold: number = 0.85): DetectionResult`: Detects typosquatting.
+
+- `containerImageScan(imageLayers: Array<{...}>, signatures: Array<{...}>, vulnerabilityDb: VulnerabilityEntry[]): ScanResult`: Scans container image.
+
+- `runtimeK8sAnomaly(k8sEvents: Record<string, unknown>[], baseline: Record<string, number>, anomalyThreshold: number = 2.0): AnomalyResult`: Detects K8s runtime anomaly.
+
+- `cloudSecurityScore(config: Record<string, unknown>, benchmarks: Record<string, Record<string, unknown>>, weights: Record<string, number>): ScoreResult`: Calculates cloud security score.
+
+- `workloadIdentityValidation(workloadConfig: WorkloadConfig, identityProvider: string, trustPolicy: Record<string, unknown>): ValidationResult`: Validates workload identity.
+
+- `confidentialComputingValidation(attestation: Attestation, teeType: 'sgx' | 'tdx' | 'sev' | 'snp' | 'nitro' | 'cvm', expectedMeasurements: Record<string, string>): ValidationResult`: Validates confidential computing.
+
+---
+
+### TS: Monitoring (12 functions)
+
+Monitoring: anomaly score, threat score, risk score, event correlation, adaptive alerting, attack path analysis, threat graph, behavioral analysis, UEBA, account takeover detection, incident timeline, MITRE ATT&CK mapping.
+
+#### Functions
+
+- `anomalyScore(metrics: MetricsData, baseline: BaselineData, weights: Record<string, number> = {}): number`: Calculates anomaly score via z-score.
+
+- `threatScore(events: SecurityEvent[], threatIntel: ThreatIntel, context: Record<string, unknown> = {}): number`: Calculates threat score.
+
+- `riskScore(userId: string, events: SecurityEvent[], context: Record<string, unknown> = {}, historical: {...}): number`: Calculates user risk score.
+
+- `correlateEvents(events: SecurityEvent[], timeWindow: number = 300000, correlationRules: CorrelationRule[] = []): CorrelatedEvent[]`: Correlates security events.
+
+- `adaptiveAlerting(events: SecurityEvent[], baseline: {...}, alertFatigueThreshold: number = 10): AlertResult`: Adaptive alerting with fatigue prevention.
+
+- `attackPathAnalysis(events: SecurityEvent[], networkTopology: {...}, attackGraph: {...}): PathResult`: Analyzes attack paths.
+
+- `threatGraph(events: SecurityEvent[], entities: {...}[], relationships: {...}[]): GraphResult`: Constructs threat graph.
+
+- `behavioralAnalysis(userEvents: SecurityEvent[], baseline: {...}, deviationThreshold: number = 2.0): AnalysisResult`: Analyzes user behavior.
+
+- `uebaAnalysis(userEvents: SecurityEvent[], peerGroup: {...}, anomalyThreshold: number = 2.5): UebaResult`: UEBA against peer groups.
+
+- `detectAccountTakeover(userEvents: SecurityEvent[], baseline: {...}, riskFactors: {...}): DetectionResult`: Detects account takeover.
+
+- `incidentTimeline(events: SecurityEvent[], incidentId: string, classification: string = 'unclassified'): TimelineResult`: Constructs incident timeline.
+
+- `attackChainMapping(events: SecurityEvent[], mitreFramework: {...}, killChain: {...}): ChainResult`: Maps to MITRE ATT&CK and Kill Chain.
+
+---
+
+### TS: Defensive (20 functions)
+
+Active defense: runtime self-protection, anti-debugging, anti-tampering, memory integrity, process integrity, code signing, binary integrity, secure boot, secure update, anti-hook, anti-injection, anti-rootkit, anti-VM, anti-emulation, moving target, dynamic attack surface, runtime policy engine, self-healing, adaptive threat response, autonomous containment.
+
+#### Functions
+
+- `runtimeSelfProtection(config: ProtectionConfig, integrityChecks: IntegrityCheckConfig[], monitoring: MonitoringConfig): ProtectionResult`: Runtime self-protection with integrity checks.
+
+- `antiDebuggingDetection(processInfo: ProcessInfo, ptraceStatus: PtraceStatus, debuggerSignals: DebuggerSignal[]): DetectionResult`: Detects active debugging.
+
+- `antiTampering(binaryHash: BinaryHash[], expectedHash: Record<string, string>, integrityChecks: IntegrityCheckConfig[]): DetectionResult`: Detects binary tampering.
+
+- `memoryIntegrityCheck(memoryRegions: MemoryRegion[], expectedState: MemoryExpectedState[], signatures: MemorySignature[]): IntegrityResult`: Verifies memory integrity.
+
+- `processIntegrityCheck(processId: number, expectedModules: string[], allowedParents: number[]): IntegrityResult`: Verifies process integrity.
+
+- `codeSigningValidation(binaryPath: string, certificateStore: CertificateStore, revocationCheck: boolean): ValidationResult`: Validates code signing.
+
+- `binaryIntegrityValidation(binaryPath: string, expectedHashes: Record<string, string>, sections: string[]): ValidationResult`: Validates binary integrity by section.
+
+- `secureBootValidation(bootChain: BootMeasurement[], measurements: BootMeasurement[], pcrValues: PcrValue[]): ValidationResult`: Validates secure boot chain.
+
+- `secureUpdateValidation(updatePackage: UpdatePackage, signature: UpdateSignature, version: string, channel: string): ValidationResult`: Validates update package.
+
+- `antiHookDetection(functions: HookInfo[], memoryRegions: MemoryRegion[], knownHooks: string[]): DetectionResult`: Detects function hooks.
+
+- `antiInjectionDetection(processModules: ProcessModule[], loadedLibraries: string[], injectionSignatures: InjectionSignature[]): DetectionResult`: Detects code injection.
+
+- `antiRootkitDetection(systemCalls: SystemCallInfo[], kernelModules: KernelModule[], hiddenProcesses: ProcessEntry[]): DetectionResult`: Detects rootkit activity.
+
+- `antiVmDetection(hardwareInfo: HardwareInfo, timingChecks: TimingCheck, vmArtifacts: VmArtifact[]): DetectionResult`: Detects VM environment.
+
+- `antiEmulationDetection(environmentChecks: EnvironmentCheck[], timing: TimingCheck, apiAvailability: ApiAvailability[]): DetectionResult`: Detects emulation/sandbox.
 
 - `movingTargetRuntime(services: ServiceConfig[], rotationConfig: RotationConfig, randomization: RandomizationConfig): MTDResult`: Moving target defense.
 
-- `dynamicAttackSurface(endpoints: EndpointConfig[], exposureConfig: ExposureConfig, threatLevel: number): SurfaceResult`: Ajusta superfície de ataque.
+- `dynamicAttackSurface(endpoints: EndpointConfig[], exposureConfig: ExposureConfig, threatLevel: number): SurfaceResult`: Adjusts attack surface.
 
-- `runtimePolicyEngine(policies: SecurityPolicy[], context: PolicyContext, enforcementMode: EnforcementConfig): PolicyResult`: Engine de políticas runtime.
+- `runtimePolicyEngine(policies: SecurityPolicy[], context: PolicyContext, enforcementMode: EnforcementConfig): PolicyResult`: Runtime policy engine.
 
-- `selfHealingSecurity(state: SystemState, healingRules: HealingRule[], recoveryActions: RecoveryAction[]): HealingResult`: Auto-recuperação de segurança.
+- `selfHealingSecurity(state: SystemState, healingRules: HealingRule[], recoveryActions: RecoveryAction[]): HealingResult`: Self-healing security.
 
-- `adaptiveThreatResponse(threat: ThreatInfo, responsePlaybook: ResponsePlaybook, context: ResponseContext): ResponseResult`: Resposta adaptativa a ameaças.
+- `adaptiveThreatResponse(threat: ThreatInfo, responsePlaybook: ResponsePlaybook, context: ResponseContext): ResponseResult`: Adaptive threat response.
 
-- `autonomousContainment(threat: ThreatInfo, containmentRules: ContainmentRule[], networkTopology: NetworkNode[]): ContainmentResult`: Contenção autônoma de ameaças.
+- `autonomousContainment(threat: ThreatInfo, containmentRules: ContainmentRule[], networkTopology: NetworkNode[]): ContainmentResult`: Autonomous threat containment.
 
 ---
 
 ### TS: Honeypot
 
-*(Módulo em desenvolvimento - funções serão adicionadas na próxima versão)*
+*(Module under development - functions will be added in the next version)*
 
 ---
 
-### TS: File (20 funções)
+### TS: File (18 functions)
 
-Segurança de arquivos: extension validation, MIME validation, polyglot detection, zip bomb, office macros, PDF JavaScript, malware scan, YARA scan, heuristic scan, quarantine, filename sanitization, executable payload, entropy analysis, embedded script, steganography, obfuscation, secure tempfile, immutable storage.
+File security: extension validation, MIME validation, polyglot detection, zip bomb, office macros, PDF JavaScript, malware scan, YARA scan, heuristic scan, quarantine, filename sanitization, executable payload, entropy analysis, embedded script, steganography, obfuscation, secure tempfile, immutable storage.
 
-#### Funções
+#### Functions
 
-- `validateExtension(filename: string, allowedExtensions: string[]): boolean`: Valida extensão de arquivo.
+- `validateExtension(filename: string, allowedExtensions: string[]): boolean`: Validates file extension.
 
-- `validateMime(fileData: Buffer, expectedMime: string, magicBytes?: string): MimeResult`: Valida MIME type via magic bytes.
+- `validateMime(fileData: Buffer, expectedMime: string, magicBytes?: string): MimeResult`: Validates MIME type via magic bytes.
 
-- `detectPolyglotFile(fileData: Buffer, signatures: FileSignature[]): DetectionResult`: Detecta polyglot files.
+- `detectPolyglotFile(fileData: Buffer, signatures: FileSignature[]): DetectionResult`: Detects polyglot files.
 
-- `detectZipBomb(fileData: Buffer, maxRatio: number = 100, maxUncompressed: number = 1073741824): DetectionResult`: Detecta zip bombs.
+- `detectZipBomb(fileData: Buffer, maxRatio: number = 100, maxUncompressed: number = 1073741824): DetectionResult`: Detects zip bombs.
 
-- `detectOfficeMacro(fileData: Buffer, fileType: string): DetectionResult`: Detecta macros Office.
+- `detectOfficeMacro(fileData: Buffer, fileType: string): DetectionResult`: Detects Office macros.
 
-- `detectPdfJavascript(fileData: Buffer): DetectionResult`: Detecta JS em PDF.
+- `detectPdfJavascript(fileData: Buffer): DetectionResult`: Detects JS in PDF.
 
-- `malwareScan(fileData: Buffer, signatures: Array<{...}>, yaraRules?: YaraRule[]): ScanResult`: Escaneia por malware.
+- `malwareScan(fileData: Buffer, signatures: Array<{...}>, yaraRules?: YaraRule[]): ScanResult`: Scans for malware.
 
-- `yaraScan(fileData: Buffer, rules: YaraRule[], namespace?: string): ScanResult`: Scan com regras YARA.
+- `yaraScan(fileData: Buffer, rules: YaraRule[], namespace?: string): ScanResult`: Scans with YARA rules.
 
-- `heuristicScan(fileData: Buffer, heuristics: HeuristicRule[], threshold: number = 0.5): ScanResult`: Scan heurístico.
+- `heuristicScan(fileData: Buffer, heuristics: HeuristicRule[], threshold: number = 0.5): ScanResult`: Heuristic scan.
 
-- `quarantineFile(filePath: string, quarantineDir: string, reason: string): string`: Quarentena de arquivo.
+- `quarantineFile(filePath: string, quarantineDir: string, reason: string): string`: File quarantine.
 
-- `sanitizeFilename(filename: string, maxLength: number = 255, allowedChars: RegExp = /^[a-zA-Z0-9._-]+$/): string`: Sanitiza nome de arquivo.
+- `sanitizeFilename(filename: string, maxLength: number = 255, allowedChars: RegExp = /^[a-zA-Z0-9._-]+$/): string`: Sanitizes filename.
 
-- `detectExecutablePayload(fileData: Buffer, fileType: string): DetectionResult`: Detecta payload executável.
+- `detectExecutablePayload(fileData: Buffer, fileType: string): DetectionResult`: Detects executable payload.
 
-- `entropyAnalysis(fileData: Buffer, blockSize: number = 1024, threshold: number = 7.5): EntropyResult`: Análise de entropia.
+- `entropyAnalysis(fileData: Buffer, blockSize: number = 1024, threshold: number = 7.5): EntropyResult`: Entropy analysis.
 
-- `detectEmbeddedScript(fileData: Buffer, fileType: string, scriptTypes: string[] = ['javascript', 'vbscript', 'powershell', 'python', 'batch']): DetectionResult`: Detecta scripts embutidos.
+- `detectEmbeddedScript(fileData: Buffer, fileType: string, scriptTypes: string[] = ['javascript', 'vbscript', 'powershell', 'python', 'batch']): DetectionResult`: Detects embedded scripts.
 
-- `detectSteganography(fileData: Buffer, analysisMethods: string[] = ['lsb', 'appended', 'entropy', 'histogram']): DetectionResult`: Detecta esteganografia.
+- `detectSteganography(fileData: Buffer, analysisMethods: string[] = ['lsb', 'appended', 'entropy', 'histogram']): DetectionResult`: Detects steganography.
 
-- `detectObfuscation(fileData: Buffer, detectionMethods: string[] = ['base64', 'hex', 'string_concat', 'entropy', 'control_flow']): DetectionResult`: Detecta ofuscação.
+- `detectObfuscation(fileData: Buffer, detectionMethods: string[] = ['base64', 'hex', 'string_concat', 'entropy', 'control_flow']): DetectionResult`: Detects obfuscation.
 
-- `secureTempfile(prefix: string = 'msf', suffix: string = '.tmp', directory?: string, deleteOnClose: boolean = true): string`: Cria tempfile seguro.
+- `secureTempfile(prefix: string = 'msf', suffix: string = '.tmp', directory?: string, deleteOnClose: boolean = true): string`: Creates secure tempfile.
 
-- `immutableStorageCheck(filePath: string, expectedHash: string, storageType: string): boolean`: Verifica storage imutável.
+- `immutableStorageCheck(filePath: string, expectedHash: string, storageType: string): boolean`: Verifies immutable storage.
 
 ---
 
-### TS: Enterprise (10 funções)
+### TS: Enterprise (10 functions)
 
-Conformidade enterprise: LGPD, GDPR, HIPAA, PCI-DSS, compliance reports, audit trails, policy as code, security dashboard, tenant isolation, multi-region security.
+Enterprise compliance: LGPD, GDPR, HIPAA, PCI-DSS, compliance reports, audit trails, policy as code, security dashboard, tenant isolation, multi-region security.
 
-#### Funções
+#### Functions
 
-- `lgpdCheck(systemConfig: SystemConfig, dataFlows: DataFlow[], controls: Control[]): ComplianceResult`: Verifica conformidade LGPD.
+- `lgpdCheck(systemConfig: SystemConfig, dataFlows: DataFlow[], controls: Control[]): ComplianceResult`: Checks LGPD compliance.
 
-- `gdprCheck(systemConfig: SystemConfig, dataProcessing: DataProcessing, controls: Control[]): ComplianceResult`: Verifica conformidade GDPR.
+- `gdprCheck(systemConfig: SystemConfig, dataProcessing: DataProcessing, controls: Control[]): ComplianceResult`: Checks GDPR compliance.
 
-- `hipaaCheck(systemConfig: SystemConfig, phiHandling: PHIHandling, controls: Control[]): ComplianceResult`: Verifica conformidade HIPAA.
+- `hipaaCheck(systemConfig: SystemConfig, phiHandling: PHIHandling, controls: Control[]): ComplianceResult`: Checks HIPAA compliance.
 
-- `pciCheck(systemConfig: SystemConfig, cardDataHandling: CardDataHandling, controls: Control[]): ComplianceResult`: Verifica conformidade PCI-DSS.
+- `pciCheck(systemConfig: SystemConfig, cardDataHandling: CardDataHandling, controls: Control[]): ComplianceResult`: Checks PCI-DSS compliance.
 
-- `complianceReport(checks: ComplianceResult[], framework: string, scope: string): ReportResult`: Gera relatório de compliance.
+- `complianceReport(checks: ComplianceResult[], framework: string, scope: string): ReportResult`: Generates compliance report.
 
-- `auditTrail(events: AuditEvent[], userActions: UserAction[], dataChanges: DataChange[]): AuditResult`: Gera audit trail.
+- `auditTrail(events: AuditEvent[], userActions: UserAction[], dataChanges: DataChange[]): AuditResult`: Generates audit trail.
 
 - `policyAsCode(policies: Policy[], context: PolicyContext, enforcement: PolicyEnforcement): PolicyResult`: Policy as code.
 
-- `realtimeSecurityDashboard(metrics: SecurityMetric[], alerts: SecurityAlert[], trends: SecurityTrend[]): DashboardResult`: Dashboard de segurança.
+- `realtimeSecurityDashboard(metrics: SecurityMetric[], alerts: SecurityAlert[], trends: SecurityTrend[]): DashboardResult`: Security dashboard.
 
-- `tenantIsolation(tenantConfig: TenantConfig, networkPolicies: NetworkPolicy[], dataSegregation: DataSegregation): IsolationResult`: Isolamento de tenant.
+- `tenantIsolation(tenantConfig: TenantConfig, networkPolicies: NetworkPolicy[], dataSegregation: DataSegregation): IsolationResult`: Tenant isolation.
 
-- `multiRegionSecurity(regions: RegionConfig[], dataResidencyRules: DataResidencyRule[], encryption: RegionEncryption): RegionResult`: Segurança multi-region.
-
----
-
-### TS: Integrations (9 funções)
-
-Integrações: Express, Fastify, NestJS, Next.js, Cloudflare, Deno, Bun, Browser Runtime, Service Worker, WASM.
-
-#### Funções
-
-- `expressSecurityMiddleware(app: unknown, config: ExpressConfig = {}, middlewareConfig: ExpressMiddlewareConfig = {}): MiddlewareResult`: Middleware de segurança Express.
-
-- `fastifySecurityMiddleware(app: unknown, config: FastifyConfig = {}, securityConfig: FastifySecurityConfig = {}): MiddlewareResult`: Middleware de segurança Fastify.
-
-- `nestjsSecurityModule(config: NestjsConfig = {}, guards: string[] = [], interceptors: string[] = []): ModuleResult`: Módulo de segurança NestJS.
-
-- `nextjsSecurityHeaders(config: NextjsConfig = {}, headers: Record<string, string> = {}): HeadersResult`: Security headers Next.js.
-
-- `cloudflareEdgeProtection(config: CloudflareConfig = {}, rules: EdgeRule[] = [], workers: string[] = []): EdgeResult`: Proteção edge Cloudflare.
-
-- `denoSecurityPlugin(config: DenoConfig = {}, permissions: string[] = [], sandbox: Record<string, unknown> = {}): PluginResult`: Plugin de segurança Deno.
-
-- `bunSecurityPlugin(config: BunConfig = {}, optimizations: Record<string, unknown> = {}, security: Record<string, unknown> = {}): PluginResult`: Plugin de segurança Bun.
-
-- `browserRuntimeProtection(config: BrowserConfig = {}, csp: string = '', sandbox: Record<string, unknown> = {}): ProtectionResult`: Proteção runtime browser.
-
-- `serviceWorkerSecurity(config: ServiceWorkerConfig = {}, scope: string = '/', permissions: string[] = []): SecurityResult`: Segurança Service Worker.
-
-- `wasmSecurityRuntime(config: WasmConfig = {}, memoryLimits: MemoryLimit = { initial: 1024, maximum: 4096, shared: false }, syscalls: string[] = []): RuntimeResult`: Runtime de segurança WASM.
+- `multiRegionSecurity(regions: RegionConfig[], dataResidencyRules: DataResidencyRule[], encryption: RegionEncryption): RegionResult`: Multi-region security.
 
 ---
 
-## Guia de Uso
+### TS: Integrations (9 functions)
 
-### Python - Exemplo Básico
+Integrations: Express, Fastify, NestJS, Next.js, Cloudflare, Deno, Bun, Browser Runtime, Service Worker, WASM.
+
+#### Functions
+
+- `expressSecurityMiddleware(app: unknown, config: ExpressConfig = {}, middlewareConfig: ExpressMiddlewareConfig = {}): MiddlewareResult`: Express security middleware.
+
+- `fastifySecurityMiddleware(app: unknown, config: FastifyConfig = {}, securityConfig: FastifySecurityConfig = {}): MiddlewareResult`: Fastify security middleware.
+
+- `nestjsSecurityModule(config: NestjsConfig = {}, guards: string[] = [], interceptors: string[] = []): ModuleResult`: NestJS security module.
+
+- `nextjsSecurityHeaders(config: NextjsConfig = {}, headers: Record<string, string> = {}): HeadersResult`: Next.js security headers.
+
+- `cloudflareEdgeProtection(config: CloudflareConfig = {}, rules: EdgeRule[] = [], workers: string[] = []): EdgeResult`: Cloudflare edge protection.
+
+- `denoSecurityPlugin(config: DenoConfig = {}, permissions: string[] = [], sandbox: Record<string, unknown> = {}): PluginResult`: Deno security plugin.
+
+- `bunSecurityPlugin(config: BunConfig = {}, optimizations: Record<string, unknown> = {}, security: Record<string, unknown> = {}): PluginResult`: Bun security plugin.
+
+- `browserRuntimeProtection(config: BrowserConfig = {}, csp: string = '', sandbox: Record<string, unknown> = {}): ProtectionResult`: Browser runtime protection.
+
+- `serviceWorkerSecurity(config: ServiceWorkerConfig = {}, scope: string = '/', permissions: string[] = []): SecurityResult`: Service Worker security.
+
+- `wasmSecurityRuntime(config: WasmConfig = {}, memoryLimits: MemoryLimit = { initial: 1024, maximum: 4096, shared: false }, syscalls: string[] = []): RuntimeResult`: WASM security runtime.
+
+---
+
+## Usage Guide
+
+### Python - Basic Example
 
 ```python
 from master_security.auth import validate_jwt, generate_jwt
@@ -1276,7 +1276,7 @@ from master_security.api import validate_input, api_rate_limit
 from master_security.network import validate_ip, detect_port_scan
 from master_security.crypto import encrypt_data, decrypt_data, secure_random
 
-# Gerar e validar JWT
+# Generate and validate JWT
 token = generate_jwt(
     subject="user-123",
     secret="my-secret-key",
@@ -1286,18 +1286,18 @@ token = generate_jwt(
 )
 payload = validate_jwt(token, "my-secret-key", ["HS256"], True, None)
 
-# Detectar XSS
+# Detect XSS
 result = detect_xss("<script>alert('xss')</script>")
 if result['detected']:
-    print(f"Ameaça detectada: {result['severity']}")
+    print(f"Threat detected: {result['severity']}")
 
-# Criptografar dados
+# Encrypt data
 key = secure_random(32)
-encrypted = encrypt_data(b"dados secretos", key, "aes-256-gcm")
+encrypted = encrypt_data(b"secret data", key, "aes-256-gcm")
 decrypted = decrypt_data(encrypted['ciphertext'], key, encrypted['nonce'], "aes-256-gcm")
 ```
 
-### TypeScript - Exemplo Básico
+### TypeScript - Basic Example
 
 ```typescript
 import { detectXss, sanitizeHtml, validateCors } from './src/web/index.js';
@@ -1305,19 +1305,19 @@ import { validateIp, detectPortScan } from './src/network/index.js';
 import { generateHmac, verifyHmac, secureRandom } from './src/crypto/index.js';
 import { getConfig, getMetrics, getEventBus } from './src/core/index.js';
 
-// Detectar XSS
+// Detect XSS
 const xssResult = detectXss("<script>alert('xss')</script>");
 if (xssResult.detected) {
-  console.log(`Ameaça: ${xssResult.severity}`);
+  console.log(`Threat: ${xssResult.severity}`);
 }
 
-// Gerar e verificar HMAC
+// Generate and verify HMAC
 const key = secureRandom(32);
 const data = new TextEncoder().encode("payload");
 const hmac = generateHmac(data, key);
 const isValid = verifyHmac(data, hmac, key);
 
-// Usar métricas
+// Use metrics
 const metrics = getMetrics();
 metrics.incCounter('security_checks', { module: 'web' });
 metrics.observeHistogram('detection_time_ms', 42.5);
@@ -1325,37 +1325,37 @@ metrics.observeHistogram('detection_time_ms', 42.5);
 
 ---
 
-## Telemetria e Observabilidade
+## Telemetry & Observability
 
-O MSF integra **OpenTelemetry** para tracing distribuído, **métricas** (counters, gauges, histograms), **logging estruturado** (pino no TS, loguru no Python), e **event bus** para comunicação assíncrona.
+MSF integrates **OpenTelemetry** for distributed tracing, **metrics** (counters, gauges, histograms), **structured logging** (pino in TS, loguru in Python), and **event bus** for async communication.
 
-### Métricas Disponíveis
+### Available Metrics
 
-| Métrica | Tipo | Descrição |
-|---------|------|-----------|
-| `jwt_validations` | Counter | Total de validações JWT |
-| `xss_detections` | Counter | Detecções de XSS |
-| `sqli_detections` | Counter | Detecções de SQL Injection |
-| `port_scan_detections` | Counter | Detecções de port scan |
-| `ddos_detections` | Counter | Detecções de DDoS |
-| `malware_scans` | Counter | Scans de malware executados |
-| `anomaly_scores` | Histogram | Distribuição de scores de anomalia |
-| `threat_scores` | Histogram | Distribuição de scores de ameaça |
-| `detection_latency_ms` | Histogram | Latência de detecção |
-| `active_sessions` | Gauge | Sessões ativas |
-| `cache_hit_ratio` | Gauge | Taxa de hit do cache |
+| Metric | Type | Description |
+|--------|------|-------------|
+| `jwt_validations` | Counter | Total JWT validations |
+| `xss_detections` | Counter | XSS detections |
+| `sqli_detections` | Counter | SQL Injection detections |
+| `port_scan_detections` | Counter | Port scan detections |
+| `ddos_detections` | Counter | DDoS detections |
+| `malware_scans` | Counter | Malware scans executed |
+| `anomaly_scores` | Histogram | Anomaly score distribution |
+| `threat_scores` | Histogram | Threat score distribution |
+| `detection_latency_ms` | Histogram | Detection latency |
+| `active_sessions` | Gauge | Active sessions |
+| `cache_hit_ratio` | Gauge | Cache hit ratio |
 
 ---
 
-## Contribuição
+## Contributing
 
-1. Fork o repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -am 'Adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-### Rodando os Testes
+### Running Tests
 
 ```bash
 # Python
@@ -1369,6 +1369,6 @@ npx vitest run
 
 ---
 
-## Licença
+## License
 
-MIT License - veja o arquivo LICENSE para detalhes.
+MIT License - see the LICENSE file for details.
