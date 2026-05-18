@@ -1,0 +1,85 @@
+﻿name: CI - TypeScript SDK
+
+on:
+  push:
+    branches: [main]
+    paths: ['packages/core/**']
+  pull_request:
+    branches: [main]
+    paths: ['packages/core/**']
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [24, 25]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: |
+          cd packages/core
+          npm ci
+      - name: Lint
+        run: |
+          cd packages/core
+          npm run lint
+      - name: Type check
+        run: |
+          cd packages/core
+          npm run typecheck
+      - name: Build
+        run: |
+          cd packages/core
+          npm run build
+      - name: Run tests
+        run: |
+          cd packages/core
+          npm test
+      - name: Run fuzz tests
+        run: |
+          cd packages/core
+          npm run test:fuzz
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run npm audit
+        run: |
+          cd packages/core
+          npm audit --audit-level=moderate
+      - name: Generate SBOM
+        uses: CycleInc/cyclonedx-github-action@v1
+        with:
+          path: packages/core
+
+  publish:
+    needs: [test, security]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        run: |
+          cd packages/core
+          npm ci
+      - name: Build
+        run: |
+          cd packages/core
+          npm run build
+      - name: Publish to npm
+        run: |
+          cd packages/core
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
